@@ -1,0 +1,2329 @@
+[WARNING] aws-cdk-lib.aws_ecs.ClusterProps#containerInsights is deprecated.
+  See {@link containerInsightsV2 }
+  This API will be removed in the next major release.
+Bundling asset EyereadStack/IngestFn/Code/Stage...
+Bundling asset EyereadStack/ContextFn/Code/Stage...
+Bundling asset EyereadStack/GenerateFn/Code/Stage...
+Bundling asset EyereadStack/TtsFn/Code/Stage...
+Bundling asset EyereadStack/PackageFn/Code/Stage...
+(node:15456) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:21004) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+current credentials could not be used to assume 'arn:aws:iam::419892868210:role/cdk-hnb659fds-lookup-role-419892868210-us-east-1', but are for the right account. Proceeding anyway.
+[WARNING] aws-cdk-lib.aws_ecs.ClusterProps#containerInsights is deprecated.
+  See {@link containerInsightsV2 }
+  This API will be removed in the next major release.
+(node:468) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[Warning at /EyereadStack/ApiService/Service] minHealthyPercent has not been configured so the default value of 50% is used. The number of running tasks will decrease below the desired count during deployments etc. See https://github.com/aws/aws-cdk/issues/31705 [ack: @aws-cdk/aws-ecs:minHealthyPercent]
+[Warning at /EyereadStack/WebService/Service] minHealthyPercent has not been configured so the default value of 50% is used. The number of running tasks will decrease below the desired count during deployments etc. See https://github.com/aws/aws-cdk/issues/31705 [ack: @aws-cdk/aws-ecs:minHealthyPercent]
+Description: eyereadeverything - Blog-to-Video & Talk-to-Video platform powered by Amazon Nova
+Resources:
+  UploadsBucket5E5E9B64:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      BucketName: eyeread-uploads-419892868210
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - "*"
+            AllowedMethods:
+              - PUT
+              - GET
+            AllowedOrigins:
+              - "*"
+            MaxAge: 3600
+      LifecycleConfiguration:
+        Rules:
+          - ExpirationInDays: 30
+            Prefix: uploads/
+            Status: Enabled
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: EyereadStack/UploadsBucket/Resource
+  RendersBucket07FBD0F6:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      BucketName: eyeread-renders-419892868210
+      LifecycleConfiguration:
+        Rules:
+          - ExpirationInDays: 90
+            Status: Enabled
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: EyereadStack/RendersBucket/Resource
+  JobsTable1970BC16:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: job_id
+          AttributeType: S
+        - AttributeName: user_id
+          AttributeType: S
+        - AttributeName: created_at
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      GlobalSecondaryIndexes:
+        - IndexName: userId-createdAt-index
+          KeySchema:
+            - AttributeName: user_id
+              KeyType: HASH
+            - AttributeName: created_at
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      KeySchema:
+        - AttributeName: job_id
+          KeyType: HASH
+      TableName: eyeread-jobs
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: EyereadStack/JobsTable/Resource
+  VoiceProfilesTable81418450:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: voice_profile_id
+          AttributeType: S
+        - AttributeName: user_id
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      GlobalSecondaryIndexes:
+        - IndexName: userId-index
+          KeySchema:
+            - AttributeName: user_id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      KeySchema:
+        - AttributeName: voice_profile_id
+          KeyType: HASH
+      TableName: eyeread-voice-profiles
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: EyereadStack/VoiceProfilesTable/Resource
+  EyereadVpcCF35CAF8:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: EyereadStack/EyereadVpc
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/Resource
+  EyereadVpcPublicSubnet1SubnetB8DB2FE2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      CidrBlock: 10.0.0.0/18
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: Public
+        - Key: aws-cdk:subnet-type
+          Value: Public
+        - Key: Name
+          Value: EyereadStack/EyereadVpc/PublicSubnet1
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PublicSubnet1/Subnet
+  EyereadVpcPublicSubnet1RouteTableEB32F88C:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: Name
+          Value: EyereadStack/EyereadVpc/PublicSubnet1
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PublicSubnet1/RouteTable
+  EyereadVpcPublicSubnet1RouteTableAssociation3729396B:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: EyereadVpcPublicSubnet1RouteTableEB32F88C
+      SubnetId:
+        Ref: EyereadVpcPublicSubnet1SubnetB8DB2FE2
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PublicSubnet1/RouteTableAssociation
+  EyereadVpcPublicSubnet1DefaultRouteD7AF8652:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: EyereadVpcIGWB9298599
+      RouteTableId:
+        Ref: EyereadVpcPublicSubnet1RouteTableEB32F88C
+    DependsOn:
+      - EyereadVpcVPCGW4A4E2A4D
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PublicSubnet1/DefaultRoute
+  EyereadVpcPublicSubnet1EIP6C7DBCEA:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+        - Key: Name
+          Value: EyereadStack/EyereadVpc/PublicSubnet1
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PublicSubnet1/EIP
+  EyereadVpcPublicSubnet1NATGatewayC0F5CE73:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+          - EyereadVpcPublicSubnet1EIP6C7DBCEA
+          - AllocationId
+      SubnetId:
+        Ref: EyereadVpcPublicSubnet1SubnetB8DB2FE2
+      Tags:
+        - Key: Name
+          Value: EyereadStack/EyereadVpc/PublicSubnet1
+    DependsOn:
+      - EyereadVpcPublicSubnet1DefaultRouteD7AF8652
+      - EyereadVpcPublicSubnet1RouteTableAssociation3729396B
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PublicSubnet1/NATGateway
+  EyereadVpcPublicSubnet2SubnetB37D5A62:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1b
+      CidrBlock: 10.0.64.0/18
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: Public
+        - Key: aws-cdk:subnet-type
+          Value: Public
+        - Key: Name
+          Value: EyereadStack/EyereadVpc/PublicSubnet2
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PublicSubnet2/Subnet
+  EyereadVpcPublicSubnet2RouteTableAF0A6B68:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: Name
+          Value: EyereadStack/EyereadVpc/PublicSubnet2
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PublicSubnet2/RouteTable
+  EyereadVpcPublicSubnet2RouteTableAssociation8A5BB1F7:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: EyereadVpcPublicSubnet2RouteTableAF0A6B68
+      SubnetId:
+        Ref: EyereadVpcPublicSubnet2SubnetB37D5A62
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PublicSubnet2/RouteTableAssociation
+  EyereadVpcPublicSubnet2DefaultRouteC0BBA467:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: EyereadVpcIGWB9298599
+      RouteTableId:
+        Ref: EyereadVpcPublicSubnet2RouteTableAF0A6B68
+    DependsOn:
+      - EyereadVpcVPCGW4A4E2A4D
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PublicSubnet2/DefaultRoute
+  EyereadVpcPrivateSubnet1Subnet6AF22454:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      CidrBlock: 10.0.128.0/18
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: Private
+        - Key: aws-cdk:subnet-type
+          Value: Private
+        - Key: Name
+          Value: EyereadStack/EyereadVpc/PrivateSubnet1
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PrivateSubnet1/Subnet
+  EyereadVpcPrivateSubnet1RouteTable8377D68C:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: Name
+          Value: EyereadStack/EyereadVpc/PrivateSubnet1
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PrivateSubnet1/RouteTable
+  EyereadVpcPrivateSubnet1RouteTableAssociation14053B72:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: EyereadVpcPrivateSubnet1RouteTable8377D68C
+      SubnetId:
+        Ref: EyereadVpcPrivateSubnet1Subnet6AF22454
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PrivateSubnet1/RouteTableAssociation
+  EyereadVpcPrivateSubnet1DefaultRoute74309B52:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId:
+        Ref: EyereadVpcPublicSubnet1NATGatewayC0F5CE73
+      RouteTableId:
+        Ref: EyereadVpcPrivateSubnet1RouteTable8377D68C
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PrivateSubnet1/DefaultRoute
+  EyereadVpcPrivateSubnet2SubnetE9B20CE3:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1b
+      CidrBlock: 10.0.192.0/18
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: Private
+        - Key: aws-cdk:subnet-type
+          Value: Private
+        - Key: Name
+          Value: EyereadStack/EyereadVpc/PrivateSubnet2
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PrivateSubnet2/Subnet
+  EyereadVpcPrivateSubnet2RouteTable26EA0E10:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: Name
+          Value: EyereadStack/EyereadVpc/PrivateSubnet2
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PrivateSubnet2/RouteTable
+  EyereadVpcPrivateSubnet2RouteTableAssociation49D57A0C:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: EyereadVpcPrivateSubnet2RouteTable26EA0E10
+      SubnetId:
+        Ref: EyereadVpcPrivateSubnet2SubnetE9B20CE3
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PrivateSubnet2/RouteTableAssociation
+  EyereadVpcPrivateSubnet2DefaultRouteBF2924A6:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId:
+        Ref: EyereadVpcPublicSubnet1NATGatewayC0F5CE73
+      RouteTableId:
+        Ref: EyereadVpcPrivateSubnet2RouteTable26EA0E10
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/PrivateSubnet2/DefaultRoute
+  EyereadVpcIGWB9298599:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: EyereadStack/EyereadVpc
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/IGW
+  EyereadVpcVPCGW4A4E2A4D:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId:
+        Ref: EyereadVpcIGWB9298599
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadVpc/VPCGW
+  EyereadClusterC6EDCA75:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: eyeread-cluster
+      ClusterSettings:
+        - Name: containerInsights
+          Value: enabled
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadCluster/Resource
+  ApiRepoEFA7BA97:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: eyeread-api
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiRepo/Resource
+  WebRepo9D56C0A3:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: eyeread-web
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+    Metadata:
+      aws:cdk:path: EyereadStack/WebRepo/Resource
+  RenderRepoC853E822:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: eyeread-render-worker
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+    Metadata:
+      aws:cdk:path: EyereadStack/RenderRepo/Resource
+  NovaActRepoC46EFF0A:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: eyeread-nova-act-worker
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+    Metadata:
+      aws:cdk:path: EyereadStack/NovaActRepo/Resource
+  LambdaPipelineRole9EA64C9D:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+    Metadata:
+      aws:cdk:path: EyereadStack/LambdaPipelineRole/Resource
+  LambdaPipelineRoleDefaultPolicy09691B34:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetObject*
+              - s3:GetBucket*
+              - s3:List*
+              - s3:DeleteObject*
+              - s3:PutObject
+              - s3:PutObjectLegalHold
+              - s3:PutObjectRetention
+              - s3:PutObjectTagging
+              - s3:PutObjectVersionTagging
+              - s3:Abort*
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - UploadsBucket5E5E9B64
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - UploadsBucket5E5E9B64
+                        - Arn
+                    - /*
+          - Action:
+              - s3:GetObject*
+              - s3:GetBucket*
+              - s3:List*
+              - s3:DeleteObject*
+              - s3:PutObject
+              - s3:PutObjectLegalHold
+              - s3:PutObjectRetention
+              - s3:PutObjectTagging
+              - s3:PutObjectVersionTagging
+              - s3:Abort*
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - RendersBucket07FBD0F6
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RendersBucket07FBD0F6
+                        - Arn
+                    - /*
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:Query
+              - dynamodb:GetItem
+              - dynamodb:Scan
+              - dynamodb:ConditionCheckItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - JobsTable1970BC16
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - JobsTable1970BC16
+                        - Arn
+                    - /index/*
+          - Action:
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - JobsTable1970BC16
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - JobsTable1970BC16
+                        - Arn
+                    - /index/*
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:Query
+              - dynamodb:GetItem
+              - dynamodb:Scan
+              - dynamodb:ConditionCheckItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - VoiceProfilesTable81418450
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - VoiceProfilesTable81418450
+                        - Arn
+                    - /index/*
+          - Action:
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - VoiceProfilesTable81418450
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - VoiceProfilesTable81418450
+                        - Arn
+                    - /index/*
+          - Action:
+              - bedrock:InvokeModel
+              - bedrock:Converse
+              - polly:SynthesizeSpeech
+              - polly:StartSpeechSynthesisTask
+              - polly:GetSpeechSynthesisTask
+              - transcribe:StartTranscriptionJob
+              - transcribe:GetTranscriptionJob
+            Effect: Allow
+            Resource: "*"
+        Version: "2012-10-17"
+      PolicyName: LambdaPipelineRoleDefaultPolicy09691B34
+      Roles:
+        - Ref: LambdaPipelineRole9EA64C9D
+    Metadata:
+      aws:cdk:path: EyereadStack/LambdaPipelineRole/DefaultPolicy/Resource
+  ValidateFn1051E81A:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-419892868210-us-east-1
+        S3Key: 5736340db90a57489540c40fe830b0e925f8dd9381c2191ef43ad5aa61630520.zip
+      Environment:
+        Variables:
+          DYNAMODB_JOBS_TABLE:
+            Ref: JobsTable1970BC16
+          DYNAMODB_VOICE_PROFILES_TABLE:
+            Ref: VoiceProfilesTable81418450
+          S3_UPLOADS_BUCKET:
+            Ref: UploadsBucket5E5E9B64
+          S3_RENDERS_BUCKET:
+            Ref: RendersBucket07FBD0F6
+          NOVA_MODEL_ID: amazon.nova-lite-v1:0
+          POLLY_VOICE_ID: Joanna
+      FunctionName: eyeread-validate
+      Handler: handler.handler
+      MemorySize: 256
+      Role:
+        Fn::GetAtt:
+          - LambdaPipelineRole9EA64C9D
+          - Arn
+      Runtime: python3.12
+      Timeout: 30
+    DependsOn:
+      - LambdaPipelineRoleDefaultPolicy09691B34
+      - LambdaPipelineRole9EA64C9D
+    Metadata:
+      aws:cdk:path: EyereadStack/ValidateFn/Resource
+      aws:asset:path: C:\Users\Ntomb\Downloads\eyereadeverything\infra\cdk.out\asset.5736340db90a57489540c40fe830b0e925f8dd9381c2191ef43ad5aa61630520
+      aws:asset:is-bundled: true
+      aws:asset:property: Code
+  IngestFnEE15D018:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-419892868210-us-east-1
+        S3Key: 6568445b284594131c473371e1f746c02dbc2a0425df670c9ffbc4bffbe1e153.zip
+      Environment:
+        Variables:
+          DYNAMODB_JOBS_TABLE:
+            Ref: JobsTable1970BC16
+          DYNAMODB_VOICE_PROFILES_TABLE:
+            Ref: VoiceProfilesTable81418450
+          S3_UPLOADS_BUCKET:
+            Ref: UploadsBucket5E5E9B64
+          S3_RENDERS_BUCKET:
+            Ref: RendersBucket07FBD0F6
+          NOVA_MODEL_ID: amazon.nova-lite-v1:0
+          POLLY_VOICE_ID: Joanna
+      FunctionName: eyeread-ingest
+      Handler: handler.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+          - LambdaPipelineRole9EA64C9D
+          - Arn
+      Runtime: python3.12
+      Timeout: 300
+    DependsOn:
+      - LambdaPipelineRoleDefaultPolicy09691B34
+      - LambdaPipelineRole9EA64C9D
+    Metadata:
+      aws:cdk:path: EyereadStack/IngestFn/Resource
+      aws:asset:path: C:\Users\Ntomb\Downloads\eyereadeverything\infra\cdk.out\asset.6568445b284594131c473371e1f746c02dbc2a0425df670c9ffbc4bffbe1e153
+      aws:asset:is-bundled: true
+      aws:asset:property: Code
+  ContextFn3A27E2C0:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-419892868210-us-east-1
+        S3Key: ba6e2b1449615537800301f80932addedb21f38dc62b248436080e0f715a9cb3.zip
+      Environment:
+        Variables:
+          DYNAMODB_JOBS_TABLE:
+            Ref: JobsTable1970BC16
+          DYNAMODB_VOICE_PROFILES_TABLE:
+            Ref: VoiceProfilesTable81418450
+          S3_UPLOADS_BUCKET:
+            Ref: UploadsBucket5E5E9B64
+          S3_RENDERS_BUCKET:
+            Ref: RendersBucket07FBD0F6
+          NOVA_MODEL_ID: amazon.nova-lite-v1:0
+          POLLY_VOICE_ID: Joanna
+      FunctionName: eyeread-context
+      Handler: handler.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+          - LambdaPipelineRole9EA64C9D
+          - Arn
+      Runtime: python3.12
+      Timeout: 120
+    DependsOn:
+      - LambdaPipelineRoleDefaultPolicy09691B34
+      - LambdaPipelineRole9EA64C9D
+    Metadata:
+      aws:cdk:path: EyereadStack/ContextFn/Resource
+      aws:asset:path: C:\Users\Ntomb\Downloads\eyereadeverything\infra\cdk.out\asset.ba6e2b1449615537800301f80932addedb21f38dc62b248436080e0f715a9cb3
+      aws:asset:is-bundled: true
+      aws:asset:property: Code
+  GenerateFn90A5B9E5:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-419892868210-us-east-1
+        S3Key: 03edd99a3efdefa004df10c0a6914b324ce17a755905bf63b495cb643d5b67fc.zip
+      Environment:
+        Variables:
+          DYNAMODB_JOBS_TABLE:
+            Ref: JobsTable1970BC16
+          DYNAMODB_VOICE_PROFILES_TABLE:
+            Ref: VoiceProfilesTable81418450
+          S3_UPLOADS_BUCKET:
+            Ref: UploadsBucket5E5E9B64
+          S3_RENDERS_BUCKET:
+            Ref: RendersBucket07FBD0F6
+          NOVA_MODEL_ID: amazon.nova-lite-v1:0
+          POLLY_VOICE_ID: Joanna
+      FunctionName: eyeread-generate
+      Handler: handler.handler
+      MemorySize: 1024
+      Role:
+        Fn::GetAtt:
+          - LambdaPipelineRole9EA64C9D
+          - Arn
+      Runtime: python3.12
+      Timeout: 600
+    DependsOn:
+      - LambdaPipelineRoleDefaultPolicy09691B34
+      - LambdaPipelineRole9EA64C9D
+    Metadata:
+      aws:cdk:path: EyereadStack/GenerateFn/Resource
+      aws:asset:path: C:\Users\Ntomb\Downloads\eyereadeverything\infra\cdk.out\asset.03edd99a3efdefa004df10c0a6914b324ce17a755905bf63b495cb643d5b67fc
+      aws:asset:is-bundled: true
+      aws:asset:property: Code
+  TtsFn3E0F963B:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-419892868210-us-east-1
+        S3Key: 491cf7881ff09ba55c44bdbb3d51b49aec0dff935600df4594572a587fcf830e.zip
+      Environment:
+        Variables:
+          DYNAMODB_JOBS_TABLE:
+            Ref: JobsTable1970BC16
+          DYNAMODB_VOICE_PROFILES_TABLE:
+            Ref: VoiceProfilesTable81418450
+          S3_UPLOADS_BUCKET:
+            Ref: UploadsBucket5E5E9B64
+          S3_RENDERS_BUCKET:
+            Ref: RendersBucket07FBD0F6
+          NOVA_MODEL_ID: amazon.nova-lite-v1:0
+          POLLY_VOICE_ID: Joanna
+      FunctionName: eyeread-tts
+      Handler: handler.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+          - LambdaPipelineRole9EA64C9D
+          - Arn
+      Runtime: python3.12
+      Timeout: 300
+    DependsOn:
+      - LambdaPipelineRoleDefaultPolicy09691B34
+      - LambdaPipelineRole9EA64C9D
+    Metadata:
+      aws:cdk:path: EyereadStack/TtsFn/Resource
+      aws:asset:path: C:\Users\Ntomb\Downloads\eyereadeverything\infra\cdk.out\asset.491cf7881ff09ba55c44bdbb3d51b49aec0dff935600df4594572a587fcf830e
+      aws:asset:is-bundled: true
+      aws:asset:property: Code
+  PackageFnDEA2F3D7:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-419892868210-us-east-1
+        S3Key: 66327e495d59718f83d6dcb103b6f99ab65610ab8e4ea15b143e455d454637b1.zip
+      Environment:
+        Variables:
+          DYNAMODB_JOBS_TABLE:
+            Ref: JobsTable1970BC16
+          DYNAMODB_VOICE_PROFILES_TABLE:
+            Ref: VoiceProfilesTable81418450
+          S3_UPLOADS_BUCKET:
+            Ref: UploadsBucket5E5E9B64
+          S3_RENDERS_BUCKET:
+            Ref: RendersBucket07FBD0F6
+          NOVA_MODEL_ID: amazon.nova-lite-v1:0
+          POLLY_VOICE_ID: Joanna
+      FunctionName: eyeread-package
+      Handler: handler.handler
+      MemorySize: 1024
+      Role:
+        Fn::GetAtt:
+          - LambdaPipelineRole9EA64C9D
+          - Arn
+      Runtime: python3.12
+      Timeout: 300
+    DependsOn:
+      - LambdaPipelineRoleDefaultPolicy09691B34
+      - LambdaPipelineRole9EA64C9D
+    Metadata:
+      aws:cdk:path: EyereadStack/PackageFn/Resource
+      aws:asset:path: C:\Users\Ntomb\Downloads\eyereadeverything\infra\cdk.out\asset.66327e495d59718f83d6dcb103b6f99ab65610ab8e4ea15b143e455d454637b1
+      aws:asset:is-bundled: true
+      aws:asset:property: Code
+  RenderTaskDefTaskRole4F1AF00E:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: EyereadStack/RenderTaskDef/TaskRole/Resource
+  RenderTaskDefTaskRoleDefaultPolicy19CCC5C5:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetObject*
+              - s3:GetBucket*
+              - s3:List*
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - UploadsBucket5E5E9B64
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - UploadsBucket5E5E9B64
+                        - Arn
+                    - /*
+          - Action:
+              - s3:GetObject*
+              - s3:GetBucket*
+              - s3:List*
+              - s3:DeleteObject*
+              - s3:PutObject
+              - s3:PutObjectLegalHold
+              - s3:PutObjectRetention
+              - s3:PutObjectTagging
+              - s3:PutObjectVersionTagging
+              - s3:Abort*
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - RendersBucket07FBD0F6
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RendersBucket07FBD0F6
+                        - Arn
+                    - /*
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:Query
+              - dynamodb:GetItem
+              - dynamodb:Scan
+              - dynamodb:ConditionCheckItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - JobsTable1970BC16
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - JobsTable1970BC16
+                        - Arn
+                    - /index/*
+          - Action:
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - JobsTable1970BC16
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - JobsTable1970BC16
+                        - Arn
+                    - /index/*
+          - Action:
+              - states:SendTaskSuccess
+              - states:SendTaskFailure
+            Effect: Allow
+            Resource: "*"
+        Version: "2012-10-17"
+      PolicyName: RenderTaskDefTaskRoleDefaultPolicy19CCC5C5
+      Roles:
+        - Ref: RenderTaskDefTaskRole4F1AF00E
+    Metadata:
+      aws:cdk:path: EyereadStack/RenderTaskDef/TaskRole/DefaultPolicy/Resource
+  RenderTaskDef3774F930:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Environment:
+            - Name: AWS_REGION
+              Value: us-east-1
+            - Name: DYNAMODB_JOBS_TABLE
+              Value:
+                Ref: JobsTable1970BC16
+            - Name: S3_RENDERS_BUCKET
+              Value:
+                Ref: RendersBucket07FBD0F6
+            - Name: S3_UPLOADS_BUCKET
+              Value:
+                Ref: UploadsBucket5E5E9B64
+          Essential: true
+          Image:
+            Fn::Join:
+              - ""
+              - - Fn::Select:
+                    - 4
+                    - Fn::Split:
+                        - ":"
+                        - Fn::GetAtt:
+                            - RenderRepoC853E822
+                            - Arn
+                - .dkr.ecr.
+                - Fn::Select:
+                    - 3
+                    - Fn::Split:
+                        - ":"
+                        - Fn::GetAtt:
+                            - RenderRepoC853E822
+                            - Arn
+                - "."
+                - Ref: AWS::URLSuffix
+                - /
+                - Ref: RenderRepoC853E822
+                - :latest
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group:
+                Ref: RenderTaskDefrenderLogGroup90A5169B
+              awslogs-stream-prefix: render
+              awslogs-region: us-east-1
+          Name: render
+      Cpu: "2048"
+      ExecutionRoleArn:
+        Fn::GetAtt:
+          - RenderTaskDefExecutionRole6A97D60F
+          - Arn
+      Family: EyereadStackRenderTaskDef44724502
+      Memory: "4096"
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      TaskRoleArn:
+        Fn::GetAtt:
+          - RenderTaskDefTaskRole4F1AF00E
+          - Arn
+    Metadata:
+      aws:cdk:path: EyereadStack/RenderTaskDef/Resource
+  RenderTaskDefrenderLogGroup90A5169B:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 7
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: EyereadStack/RenderTaskDef/render/LogGroup/Resource
+  RenderTaskDefExecutionRole6A97D60F:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: EyereadStack/RenderTaskDef/ExecutionRole/Resource
+  RenderTaskDefExecutionRoleDefaultPolicyCBE9F10D:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - RenderRepoC853E822
+                - Arn
+          - Action: ecr:GetAuthorizationToken
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - RenderTaskDefrenderLogGroup90A5169B
+                - Arn
+        Version: "2012-10-17"
+      PolicyName: RenderTaskDefExecutionRoleDefaultPolicyCBE9F10D
+      Roles:
+        - Ref: RenderTaskDefExecutionRole6A97D60F
+    Metadata:
+      aws:cdk:path: EyereadStack/RenderTaskDef/ExecutionRole/DefaultPolicy/Resource
+  NovaActTaskDefTaskRoleBED38C3F:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: EyereadStack/NovaActTaskDef/TaskRole/Resource
+  NovaActTaskDefTaskRoleDefaultPolicyA8471EEB:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetObject*
+              - s3:GetBucket*
+              - s3:List*
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - RendersBucket07FBD0F6
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RendersBucket07FBD0F6
+                        - Arn
+                    - /*
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:Query
+              - dynamodb:GetItem
+              - dynamodb:Scan
+              - dynamodb:ConditionCheckItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - JobsTable1970BC16
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - JobsTable1970BC16
+                        - Arn
+                    - /index/*
+          - Action:
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - JobsTable1970BC16
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - JobsTable1970BC16
+                        - Arn
+                    - /index/*
+          - Action:
+              - states:SendTaskSuccess
+              - states:SendTaskFailure
+            Effect: Allow
+            Resource: "*"
+        Version: "2012-10-17"
+      PolicyName: NovaActTaskDefTaskRoleDefaultPolicyA8471EEB
+      Roles:
+        - Ref: NovaActTaskDefTaskRoleBED38C3F
+    Metadata:
+      aws:cdk:path: EyereadStack/NovaActTaskDef/TaskRole/DefaultPolicy/Resource
+  NovaActTaskDef1EC424AF:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Environment:
+            - Name: AWS_REGION
+              Value: us-east-1
+            - Name: DYNAMODB_JOBS_TABLE
+              Value:
+                Ref: JobsTable1970BC16
+            - Name: S3_RENDERS_BUCKET
+              Value:
+                Ref: RendersBucket07FBD0F6
+          Essential: true
+          Image:
+            Fn::Join:
+              - ""
+              - - Fn::Select:
+                    - 4
+                    - Fn::Split:
+                        - ":"
+                        - Fn::GetAtt:
+                            - NovaActRepoC46EFF0A
+                            - Arn
+                - .dkr.ecr.
+                - Fn::Select:
+                    - 3
+                    - Fn::Split:
+                        - ":"
+                        - Fn::GetAtt:
+                            - NovaActRepoC46EFF0A
+                            - Arn
+                - "."
+                - Ref: AWS::URLSuffix
+                - /
+                - Ref: NovaActRepoC46EFF0A
+                - :latest
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group:
+                Ref: NovaActTaskDefnovaactLogGroupB8E7AB0A
+              awslogs-stream-prefix: nova-act
+              awslogs-region: us-east-1
+          Name: nova-act
+      Cpu: "2048"
+      ExecutionRoleArn:
+        Fn::GetAtt:
+          - NovaActTaskDefExecutionRole4FC947E5
+          - Arn
+      Family: EyereadStackNovaActTaskDef9126FD53
+      Memory: "4096"
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      TaskRoleArn:
+        Fn::GetAtt:
+          - NovaActTaskDefTaskRoleBED38C3F
+          - Arn
+    Metadata:
+      aws:cdk:path: EyereadStack/NovaActTaskDef/Resource
+  NovaActTaskDefnovaactLogGroupB8E7AB0A:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 7
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: EyereadStack/NovaActTaskDef/nova-act/LogGroup/Resource
+  NovaActTaskDefExecutionRole4FC947E5:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: EyereadStack/NovaActTaskDef/ExecutionRole/Resource
+  NovaActTaskDefExecutionRoleDefaultPolicy064AC0D1:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - NovaActRepoC46EFF0A
+                - Arn
+          - Action: ecr:GetAuthorizationToken
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - NovaActTaskDefnovaactLogGroupB8E7AB0A
+                - Arn
+        Version: "2012-10-17"
+      PolicyName: NovaActTaskDefExecutionRoleDefaultPolicy064AC0D1
+      Roles:
+        - Ref: NovaActTaskDefExecutionRole4FC947E5
+    Metadata:
+      aws:cdk:path: EyereadStack/NovaActTaskDef/ExecutionRole/DefaultPolicy/Resource
+  RenderVideoSecurityGroup1D6E276F:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: EyereadStack/RenderVideo/SecurityGroup
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/RenderVideo/SecurityGroup/Resource
+  UploadYouTubeSecurityGroup845F0FD7:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: EyereadStack/UploadYouTube/SecurityGroup
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/UploadYouTube/SecurityGroup/Resource
+  SfnLogs9D18D4A1:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /eyeread/stepfunctions
+      RetentionInDays: 7
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: EyereadStack/SfnLogs/Resource
+  EyereadPipelineRole30F7D69D:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: states.amazonaws.com
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadPipeline/Role/Resource
+  EyereadPipelineRoleDefaultPolicy11735FF6:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - ValidateFn1051E81A
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - ValidateFn1051E81A
+                        - Arn
+                    - :*
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - IngestFnEE15D018
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - IngestFnEE15D018
+                        - Arn
+                    - :*
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - ContextFn3A27E2C0
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - ContextFn3A27E2C0
+                        - Arn
+                    - :*
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - GenerateFn90A5B9E5
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - GenerateFn90A5B9E5
+                        - Arn
+                    - :*
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - TtsFn3E0F963B
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - TtsFn3E0F963B
+                        - Arn
+                    - :*
+          - Action: ecs:RunTask
+            Effect: Allow
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:"
+                  - Fn::Select:
+                      - 1
+                      - Fn::Split:
+                          - ":"
+                          - Ref: RenderTaskDef3774F930
+                  - ":"
+                  - Fn::Select:
+                      - 2
+                      - Fn::Split:
+                          - ":"
+                          - Ref: RenderTaskDef3774F930
+                  - ":"
+                  - Fn::Select:
+                      - 3
+                      - Fn::Split:
+                          - ":"
+                          - Ref: RenderTaskDef3774F930
+                  - ":"
+                  - Fn::Select:
+                      - 4
+                      - Fn::Split:
+                          - ":"
+                          - Ref: RenderTaskDef3774F930
+                  - ":"
+                  - Fn::Select:
+                      - 0
+                      - Fn::Split:
+                          - /
+                          - Fn::Select:
+                              - 5
+                              - Fn::Split:
+                                  - ":"
+                                  - Ref: RenderTaskDef3774F930
+                  - /
+                  - Fn::Select:
+                      - 1
+                      - Fn::Split:
+                          - /
+                          - Fn::Select:
+                              - 5
+                              - Fn::Split:
+                                  - ":"
+                                  - Ref: RenderTaskDef3774F930
+                  - :*
+          - Action:
+              - ecs:StopTask
+              - ecs:DescribeTasks
+            Effect: Allow
+            Resource: "*"
+          - Action: iam:PassRole
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - RenderTaskDefTaskRole4F1AF00E
+                  - Arn
+              - Fn::GetAtt:
+                  - RenderTaskDefExecutionRole6A97D60F
+                  - Arn
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - PackageFnDEA2F3D7
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - PackageFnDEA2F3D7
+                        - Arn
+                    - :*
+          - Action: ecs:RunTask
+            Effect: Allow
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:"
+                  - Fn::Select:
+                      - 1
+                      - Fn::Split:
+                          - ":"
+                          - Ref: NovaActTaskDef1EC424AF
+                  - ":"
+                  - Fn::Select:
+                      - 2
+                      - Fn::Split:
+                          - ":"
+                          - Ref: NovaActTaskDef1EC424AF
+                  - ":"
+                  - Fn::Select:
+                      - 3
+                      - Fn::Split:
+                          - ":"
+                          - Ref: NovaActTaskDef1EC424AF
+                  - ":"
+                  - Fn::Select:
+                      - 4
+                      - Fn::Split:
+                          - ":"
+                          - Ref: NovaActTaskDef1EC424AF
+                  - ":"
+                  - Fn::Select:
+                      - 0
+                      - Fn::Split:
+                          - /
+                          - Fn::Select:
+                              - 5
+                              - Fn::Split:
+                                  - ":"
+                                  - Ref: NovaActTaskDef1EC424AF
+                  - /
+                  - Fn::Select:
+                      - 1
+                      - Fn::Split:
+                          - /
+                          - Fn::Select:
+                              - 5
+                              - Fn::Split:
+                                  - ":"
+                                  - Ref: NovaActTaskDef1EC424AF
+                  - :*
+          - Action: iam:PassRole
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - NovaActTaskDefTaskRoleBED38C3F
+                  - Arn
+              - Fn::GetAtt:
+                  - NovaActTaskDefExecutionRole4FC947E5
+                  - Arn
+          - Action:
+              - logs:CreateLogDelivery
+              - logs:GetLogDelivery
+              - logs:UpdateLogDelivery
+              - logs:DeleteLogDelivery
+              - logs:ListLogDeliveries
+              - logs:PutResourcePolicy
+              - logs:DescribeResourcePolicies
+              - logs:DescribeLogGroups
+            Effect: Allow
+            Resource: "*"
+        Version: "2012-10-17"
+      PolicyName: EyereadPipelineRoleDefaultPolicy11735FF6
+      Roles:
+        - Ref: EyereadPipelineRole30F7D69D
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadPipeline/Role/DefaultPolicy/Resource
+  EyereadPipeline6369F73A:
+    Type: AWS::StepFunctions::StateMachine
+    Properties:
+      DefinitionString:
+        Fn::Join:
+          - ""
+          - - '{"StartAt":"ValidateJob","States":{"ValidateJob":{"Next":"Ingest","Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Catch":[{"ErrorEquals":["States.ALL"],"Next":"HandleError"}],"Type":"Task","OutputPath":"$.Payload","Resource":"arn:'
+            - Ref: AWS::Partition
+            - :states:::lambda:invoke","Parameters":{"FunctionName":"
+            - Fn::GetAtt:
+                - ValidateFn1051E81A
+                - Arn
+            - '","Payload.$":"$"}},"Ingest":{"Next":"RetrieveContext","Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Catch":[{"ErrorEquals":["States.ALL"],"Next":"HandleError"}],"Type":"Task","OutputPath":"$.Payload","Resource":"arn:'
+            - Ref: AWS::Partition
+            - :states:::lambda:invoke","Parameters":{"FunctionName":"
+            - Fn::GetAtt:
+                - IngestFnEE15D018
+                - Arn
+            - '","Payload.$":"$"}},"RetrieveContext":{"Next":"Generate","Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Type":"Task","OutputPath":"$.Payload","Resource":"arn:'
+            - Ref: AWS::Partition
+            - :states:::lambda:invoke","Parameters":{"FunctionName":"
+            - Fn::GetAtt:
+                - ContextFn3A27E2C0
+                - Arn
+            - '","Payload.$":"$"}},"Generate":{"Next":"SynthesizeNarration","Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Catch":[{"ErrorEquals":["States.ALL"],"Next":"HandleError"}],"Type":"Task","OutputPath":"$.Payload","Resource":"arn:'
+            - Ref: AWS::Partition
+            - :states:::lambda:invoke","Parameters":{"FunctionName":"
+            - Fn::GetAtt:
+                - GenerateFn90A5B9E5
+                - Arn
+            - '","Payload.$":"$"}},"SynthesizeNarration":{"Next":"RenderVideo","Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Catch":[{"ErrorEquals":["States.ALL"],"Next":"HandleError"}],"Type":"Task","OutputPath":"$.Payload","Resource":"arn:'
+            - Ref: AWS::Partition
+            - :states:::lambda:invoke","Parameters":{"FunctionName":"
+            - Fn::GetAtt:
+                - TtsFn3E0F963B
+                - Arn
+            - '","Payload.$":"$"}},"RenderVideo":{"Next":"PackageOutputs","Catch":[{"ErrorEquals":["States.ALL"],"Next":"HandleError"}],"Type":"Task","Resource":"arn:'
+            - Ref: AWS::Partition
+            - :states:::ecs:runTask.waitForTaskToken","Parameters":{"Cluster":"
+            - Fn::GetAtt:
+                - EyereadClusterC6EDCA75
+                - Arn
+            - '","TaskDefinition":"EyereadStackRenderTaskDef44724502","NetworkConfiguration":{"AwsvpcConfiguration":{"AssignPublicIp":"ENABLED","Subnets":["'
+            - Ref: EyereadVpcPublicSubnet1SubnetB8DB2FE2
+            - '","'
+            - Ref: EyereadVpcPublicSubnet2SubnetB37D5A62
+            - '"],"SecurityGroups":["'
+            - Fn::GetAtt:
+                - RenderVideoSecurityGroup1D6E276F
+                - GroupId
+            - '"]}},"Overrides":{"ContainerOverrides":[{"Name":"render","Environment":[{"Name":"JOB_ID","Value.$":"$.job_id"},{"Name":"TASK_TOKEN","Value.$":"$$.Task.Token"}]}]},"LaunchType":"FARGATE","PlatformVersion":"LATEST"}},"PackageOutputs":{"Next":"ShouldUpload","Retry":[{"ErrorEquals":["Lambda.ClientExecutionTimeoutException","Lambda.ServiceException","Lambda.AWSLambdaException","Lambda.SdkClientException"],"IntervalSeconds":2,"MaxAttempts":6,"BackoffRate":2}],"Catch":[{"ErrorEquals":["States.ALL"],"Next":"HandleError"}],"Type":"Task","OutputPath":"$.Payload","Resource":"arn:'
+            - Ref: AWS::Partition
+            - :states:::lambda:invoke","Parameters":{"FunctionName":"
+            - Fn::GetAtt:
+                - PackageFnDEA2F3D7
+                - Arn
+            - '","Payload.$":"$"}},"ShouldUpload":{"Type":"Choice","Choices":[{"Variable":"$.auto_upload_youtube","BooleanEquals":true,"Next":"UploadYouTube"}],"Default":"MarkDone"},"MarkDone":{"Type":"Pass","Result":{"status":"DONE"},"End":true},"UploadYouTube":{"Next":"MarkDone","Type":"Task","Resource":"arn:'
+            - Ref: AWS::Partition
+            - :states:::ecs:runTask.waitForTaskToken","Parameters":{"Cluster":"
+            - Fn::GetAtt:
+                - EyereadClusterC6EDCA75
+                - Arn
+            - '","TaskDefinition":"EyereadStackNovaActTaskDef9126FD53","NetworkConfiguration":{"AwsvpcConfiguration":{"AssignPublicIp":"ENABLED","Subnets":["'
+            - Ref: EyereadVpcPublicSubnet1SubnetB8DB2FE2
+            - '","'
+            - Ref: EyereadVpcPublicSubnet2SubnetB37D5A62
+            - '"],"SecurityGroups":["'
+            - Fn::GetAtt:
+                - UploadYouTubeSecurityGroup845F0FD7
+                - GroupId
+            - '"]}},"Overrides":{"ContainerOverrides":[{"Name":"nova-act","Environment":[{"Name":"JOB_ID","Value.$":"$.job_id"},{"Name":"TASK_TOKEN","Value.$":"$$.Task.Token"}]}]},"LaunchType":"FARGATE","PlatformVersion":"LATEST"}},"HandleError":{"Type":"Fail","Error":"PipelineError","Cause":"Pipeline step failed"}},"TimeoutSeconds":3600}'
+      LoggingConfiguration:
+        Destinations:
+          - CloudWatchLogsLogGroup:
+              LogGroupArn:
+                Fn::GetAtt:
+                  - SfnLogs9D18D4A1
+                  - Arn
+        Level: ALL
+      RoleArn:
+        Fn::GetAtt:
+          - EyereadPipelineRole30F7D69D
+          - Arn
+      StateMachineName: eyeread-pipeline
+    DependsOn:
+      - EyereadPipelineRoleDefaultPolicy11735FF6
+      - EyereadPipelineRole30F7D69D
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+    Metadata:
+      aws:cdk:path: EyereadStack/EyereadPipeline/Resource
+  ApiServiceLB08B891CD:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      LoadBalancerAttributes:
+        - Key: deletion_protection.enabled
+          Value: "false"
+      Scheme: internet-facing
+      SecurityGroups:
+        - Fn::GetAtt:
+            - ApiServiceLBSecurityGroup5C16BEF8
+            - GroupId
+      Subnets:
+        - Ref: EyereadVpcPublicSubnet1SubnetB8DB2FE2
+        - Ref: EyereadVpcPublicSubnet2SubnetB37D5A62
+      Type: application
+    DependsOn:
+      - EyereadVpcPublicSubnet1DefaultRouteD7AF8652
+      - EyereadVpcPublicSubnet1RouteTableAssociation3729396B
+      - EyereadVpcPublicSubnet2DefaultRouteC0BBA467
+      - EyereadVpcPublicSubnet2RouteTableAssociation8A5BB1F7
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/LB/Resource
+  ApiServiceLBSecurityGroup5C16BEF8:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatically created Security Group for ELB EyereadStackApiServiceLBEF338868
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow from anyone on port 80
+          FromPort: 80
+          IpProtocol: tcp
+          ToPort: 80
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/LB/SecurityGroup/Resource
+  ApiServiceLBSecurityGrouptoEyereadStackApiServiceSecurityGroupF7C550A58000A1BF5857:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      Description: Load balancer to target
+      DestinationSecurityGroupId:
+        Fn::GetAtt:
+          - ApiServiceSecurityGroup2592096B
+          - GroupId
+      FromPort: 8000
+      GroupId:
+        Fn::GetAtt:
+          - ApiServiceLBSecurityGroup5C16BEF8
+          - GroupId
+      IpProtocol: tcp
+      ToPort: 8000
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/LB/SecurityGroup/to EyereadStackApiServiceSecurityGroupF7C550A5:8000
+  ApiServiceLBPublicListener1394DF3E:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - TargetGroupArn:
+            Ref: ApiServiceLBPublicListenerECSGroup14A87FE9
+          Type: forward
+      LoadBalancerArn:
+        Ref: ApiServiceLB08B891CD
+      Port: 80
+      Protocol: HTTP
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/LB/PublicListener/Resource
+  ApiServiceLBPublicListenerECSGroup14A87FE9:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckIntervalSeconds: 30
+      HealthCheckPath: /health
+      HealthyThresholdCount: 2
+      Port: 80
+      Protocol: HTTP
+      TargetGroupAttributes:
+        - Key: stickiness.enabled
+          Value: "false"
+      TargetType: ip
+      UnhealthyThresholdCount: 3
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/LB/PublicListener/ECSGroup/Resource
+  ApiServiceTaskDefTaskRole1014CB34:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/TaskDef/TaskRole/Resource
+  ApiServiceTaskDefTaskRoleDefaultPolicy63C68204:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetObject*
+              - s3:GetBucket*
+              - s3:List*
+              - s3:DeleteObject*
+              - s3:PutObject
+              - s3:PutObjectLegalHold
+              - s3:PutObjectRetention
+              - s3:PutObjectTagging
+              - s3:PutObjectVersionTagging
+              - s3:Abort*
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - UploadsBucket5E5E9B64
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - UploadsBucket5E5E9B64
+                        - Arn
+                    - /*
+          - Action:
+              - s3:GetObject*
+              - s3:GetBucket*
+              - s3:List*
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - RendersBucket07FBD0F6
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RendersBucket07FBD0F6
+                        - Arn
+                    - /*
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:Query
+              - dynamodb:GetItem
+              - dynamodb:Scan
+              - dynamodb:ConditionCheckItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - JobsTable1970BC16
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - JobsTable1970BC16
+                        - Arn
+                    - /index/*
+          - Action:
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - JobsTable1970BC16
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - JobsTable1970BC16
+                        - Arn
+                    - /index/*
+          - Action:
+              - dynamodb:BatchGetItem
+              - dynamodb:Query
+              - dynamodb:GetItem
+              - dynamodb:Scan
+              - dynamodb:ConditionCheckItem
+              - dynamodb:BatchWriteItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:DescribeTable
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - VoiceProfilesTable81418450
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - VoiceProfilesTable81418450
+                        - Arn
+                    - /index/*
+          - Action:
+              - dynamodb:GetRecords
+              - dynamodb:GetShardIterator
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - VoiceProfilesTable81418450
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - VoiceProfilesTable81418450
+                        - Arn
+                    - /index/*
+          - Action: states:StartExecution
+            Effect: Allow
+            Resource:
+              Ref: EyereadPipeline6369F73A
+          - Action:
+              - s3:PutObject
+              - s3:GetObject
+            Effect: Allow
+            Resource:
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - UploadsBucket5E5E9B64
+                        - Arn
+                    - /*
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RendersBucket07FBD0F6
+                        - Arn
+                    - /*
+        Version: "2012-10-17"
+      PolicyName: ApiServiceTaskDefTaskRoleDefaultPolicy63C68204
+      Roles:
+        - Ref: ApiServiceTaskDefTaskRole1014CB34
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/TaskDef/TaskRole/DefaultPolicy/Resource
+  ApiServiceTaskDefDF3191FB:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Environment:
+            - Name: AWS_REGION
+              Value: us-east-1
+            - Name: DYNAMODB_JOBS_TABLE
+              Value:
+                Ref: JobsTable1970BC16
+            - Name: DYNAMODB_VOICE_PROFILES_TABLE
+              Value:
+                Ref: VoiceProfilesTable81418450
+            - Name: S3_UPLOADS_BUCKET
+              Value:
+                Ref: UploadsBucket5E5E9B64
+            - Name: S3_RENDERS_BUCKET
+              Value:
+                Ref: RendersBucket07FBD0F6
+            - Name: STEP_FUNCTIONS_ARN
+              Value:
+                Ref: EyereadPipeline6369F73A
+            - Name: POLLY_VOICE_ID
+              Value: Joanna
+            - Name: LOCAL_DEV
+              Value: "false"
+          Essential: true
+          Image:
+            Fn::Join:
+              - ""
+              - - Fn::Select:
+                    - 4
+                    - Fn::Split:
+                        - ":"
+                        - Fn::GetAtt:
+                            - ApiRepoEFA7BA97
+                            - Arn
+                - .dkr.ecr.
+                - Fn::Select:
+                    - 3
+                    - Fn::Split:
+                        - ":"
+                        - Fn::GetAtt:
+                            - ApiRepoEFA7BA97
+                            - Arn
+                - "."
+                - Ref: AWS::URLSuffix
+                - /
+                - Ref: ApiRepoEFA7BA97
+                - :latest
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group:
+                Ref: ApiServiceTaskDefwebLogGroup57352A09
+              awslogs-stream-prefix: ApiService
+              awslogs-region: us-east-1
+          Name: web
+          PortMappings:
+            - ContainerPort: 8000
+              Protocol: tcp
+      Cpu: "512"
+      ExecutionRoleArn:
+        Fn::GetAtt:
+          - ApiServiceTaskDefExecutionRole43B90DD6
+          - Arn
+      Family: EyereadStackApiServiceTaskDefA7F7FDBF
+      Memory: "1024"
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      TaskRoleArn:
+        Fn::GetAtt:
+          - ApiServiceTaskDefTaskRole1014CB34
+          - Arn
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/TaskDef/Resource
+  ApiServiceTaskDefwebLogGroup57352A09:
+    Type: AWS::Logs::LogGroup
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/TaskDef/web/LogGroup/Resource
+  ApiServiceTaskDefExecutionRole43B90DD6:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/TaskDef/ExecutionRole/Resource
+  ApiServiceTaskDefExecutionRoleDefaultPolicyDCB48050:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - ApiRepoEFA7BA97
+                - Arn
+          - Action: ecr:GetAuthorizationToken
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - ApiServiceTaskDefwebLogGroup57352A09
+                - Arn
+        Version: "2012-10-17"
+      PolicyName: ApiServiceTaskDefExecutionRoleDefaultPolicyDCB48050
+      Roles:
+        - Ref: ApiServiceTaskDefExecutionRole43B90DD6
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/TaskDef/ExecutionRole/DefaultPolicy/Resource
+  ApiService199661B5:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster:
+        Ref: EyereadClusterC6EDCA75
+      DeploymentConfiguration:
+        Alarms:
+          AlarmNames: []
+          Enable: false
+          Rollback: false
+        MaximumPercent: 200
+        MinimumHealthyPercent: 50
+      DesiredCount: 1
+      EnableECSManagedTags: false
+      HealthCheckGracePeriodSeconds: 60
+      LaunchType: FARGATE
+      LoadBalancers:
+        - ContainerName: web
+          ContainerPort: 8000
+          TargetGroupArn:
+            Ref: ApiServiceLBPublicListenerECSGroup14A87FE9
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: DISABLED
+          SecurityGroups:
+            - Fn::GetAtt:
+                - ApiServiceSecurityGroup2592096B
+                - GroupId
+          Subnets:
+            - Ref: EyereadVpcPrivateSubnet1Subnet6AF22454
+            - Ref: EyereadVpcPrivateSubnet2SubnetE9B20CE3
+      ServiceName: eyeread-api
+      TaskDefinition:
+        Ref: ApiServiceTaskDefDF3191FB
+    DependsOn:
+      - ApiServiceLBPublicListenerECSGroup14A87FE9
+      - ApiServiceLBPublicListener1394DF3E
+      - ApiServiceTaskDefTaskRoleDefaultPolicy63C68204
+      - ApiServiceTaskDefTaskRole1014CB34
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/Service/Service
+  ApiServiceSecurityGroup2592096B:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: EyereadStack/ApiService/Service/SecurityGroup
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    DependsOn:
+      - ApiServiceTaskDefTaskRoleDefaultPolicy63C68204
+      - ApiServiceTaskDefTaskRole1014CB34
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/Service/SecurityGroup/Resource
+  ApiServiceSecurityGroupfromEyereadStackApiServiceLBSecurityGroup56662CF2800016914DDD:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      Description: Load balancer to target
+      FromPort: 8000
+      GroupId:
+        Fn::GetAtt:
+          - ApiServiceSecurityGroup2592096B
+          - GroupId
+      IpProtocol: tcp
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+          - ApiServiceLBSecurityGroup5C16BEF8
+          - GroupId
+      ToPort: 8000
+    DependsOn:
+      - ApiServiceTaskDefTaskRoleDefaultPolicy63C68204
+      - ApiServiceTaskDefTaskRole1014CB34
+    Metadata:
+      aws:cdk:path: EyereadStack/ApiService/Service/SecurityGroup/from EyereadStackApiServiceLBSecurityGroup56662CF2:8000
+  WebServiceLB9CAD0C10:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      LoadBalancerAttributes:
+        - Key: deletion_protection.enabled
+          Value: "false"
+      Scheme: internet-facing
+      SecurityGroups:
+        - Fn::GetAtt:
+            - WebServiceLBSecurityGroup66424F28
+            - GroupId
+      Subnets:
+        - Ref: EyereadVpcPublicSubnet1SubnetB8DB2FE2
+        - Ref: EyereadVpcPublicSubnet2SubnetB37D5A62
+      Type: application
+    DependsOn:
+      - EyereadVpcPublicSubnet1DefaultRouteD7AF8652
+      - EyereadVpcPublicSubnet1RouteTableAssociation3729396B
+      - EyereadVpcPublicSubnet2DefaultRouteC0BBA467
+      - EyereadVpcPublicSubnet2RouteTableAssociation8A5BB1F7
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/LB/Resource
+  WebServiceLBSecurityGroup66424F28:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatically created Security Group for ELB EyereadStackWebServiceLB6568ED67
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow from anyone on port 80
+          FromPort: 80
+          IpProtocol: tcp
+          ToPort: 80
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/LB/SecurityGroup/Resource
+  WebServiceLBSecurityGrouptoEyereadStackWebServiceSecurityGroup271DD04E300002D9D936:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      Description: Load balancer to target
+      DestinationSecurityGroupId:
+        Fn::GetAtt:
+          - WebServiceSecurityGroup7A3EB149
+          - GroupId
+      FromPort: 3000
+      GroupId:
+        Fn::GetAtt:
+          - WebServiceLBSecurityGroup66424F28
+          - GroupId
+      IpProtocol: tcp
+      ToPort: 3000
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/LB/SecurityGroup/to EyereadStackWebServiceSecurityGroup271DD04E:3000
+  WebServiceLBPublicListenerEA62BC7F:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - TargetGroupArn:
+            Ref: WebServiceLBPublicListenerECSGroup909B7188
+          Type: forward
+      LoadBalancerArn:
+        Ref: WebServiceLB9CAD0C10
+      Port: 80
+      Protocol: HTTP
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/LB/PublicListener/Resource
+  WebServiceLBPublicListenerECSGroup909B7188:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckIntervalSeconds: 30
+      HealthCheckPath: /
+      HealthyThresholdCount: 2
+      Port: 80
+      Protocol: HTTP
+      TargetGroupAttributes:
+        - Key: stickiness.enabled
+          Value: "false"
+      TargetType: ip
+      UnhealthyThresholdCount: 3
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/LB/PublicListener/ECSGroup/Resource
+  WebServiceTaskDefTaskRole39B734D2:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/TaskDef/TaskRole/Resource
+  WebServiceTaskDef0DAE0F9A:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Environment:
+            - Name: NEXT_PUBLIC_API_URL
+              Value:
+                Fn::Join:
+                  - ""
+                  - - http://
+                    - Fn::GetAtt:
+                        - ApiServiceLB08B891CD
+                        - DNSName
+          Essential: true
+          Image:
+            Fn::Join:
+              - ""
+              - - Fn::Select:
+                    - 4
+                    - Fn::Split:
+                        - ":"
+                        - Fn::GetAtt:
+                            - WebRepo9D56C0A3
+                            - Arn
+                - .dkr.ecr.
+                - Fn::Select:
+                    - 3
+                    - Fn::Split:
+                        - ":"
+                        - Fn::GetAtt:
+                            - WebRepo9D56C0A3
+                            - Arn
+                - "."
+                - Ref: AWS::URLSuffix
+                - /
+                - Ref: WebRepo9D56C0A3
+                - :latest
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group:
+                Ref: WebServiceTaskDefwebLogGroup66B9C4A1
+              awslogs-stream-prefix: WebService
+              awslogs-region: us-east-1
+          Name: web
+          PortMappings:
+            - ContainerPort: 3000
+              Protocol: tcp
+      Cpu: "256"
+      ExecutionRoleArn:
+        Fn::GetAtt:
+          - WebServiceTaskDefExecutionRole9E63B6B2
+          - Arn
+      Family: EyereadStackWebServiceTaskDefBD1A7D08
+      Memory: "512"
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      TaskRoleArn:
+        Fn::GetAtt:
+          - WebServiceTaskDefTaskRole39B734D2
+          - Arn
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/TaskDef/Resource
+  WebServiceTaskDefwebLogGroup66B9C4A1:
+    Type: AWS::Logs::LogGroup
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/TaskDef/web/LogGroup/Resource
+  WebServiceTaskDefExecutionRole9E63B6B2:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/TaskDef/ExecutionRole/Resource
+  WebServiceTaskDefExecutionRoleDefaultPolicyF65F7670:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - WebRepo9D56C0A3
+                - Arn
+          - Action: ecr:GetAuthorizationToken
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - WebServiceTaskDefwebLogGroup66B9C4A1
+                - Arn
+        Version: "2012-10-17"
+      PolicyName: WebServiceTaskDefExecutionRoleDefaultPolicyF65F7670
+      Roles:
+        - Ref: WebServiceTaskDefExecutionRole9E63B6B2
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/TaskDef/ExecutionRole/DefaultPolicy/Resource
+  WebService5EA589E6:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster:
+        Ref: EyereadClusterC6EDCA75
+      DeploymentConfiguration:
+        Alarms:
+          AlarmNames: []
+          Enable: false
+          Rollback: false
+        MaximumPercent: 200
+        MinimumHealthyPercent: 50
+      DesiredCount: 1
+      EnableECSManagedTags: false
+      HealthCheckGracePeriodSeconds: 60
+      LaunchType: FARGATE
+      LoadBalancers:
+        - ContainerName: web
+          ContainerPort: 3000
+          TargetGroupArn:
+            Ref: WebServiceLBPublicListenerECSGroup909B7188
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: DISABLED
+          SecurityGroups:
+            - Fn::GetAtt:
+                - WebServiceSecurityGroup7A3EB149
+                - GroupId
+          Subnets:
+            - Ref: EyereadVpcPrivateSubnet1Subnet6AF22454
+            - Ref: EyereadVpcPrivateSubnet2SubnetE9B20CE3
+      ServiceName: eyeread-web
+      TaskDefinition:
+        Ref: WebServiceTaskDef0DAE0F9A
+    DependsOn:
+      - WebServiceLBPublicListenerECSGroup909B7188
+      - WebServiceLBPublicListenerEA62BC7F
+      - WebServiceTaskDefTaskRole39B734D2
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/Service/Service
+  WebServiceSecurityGroup7A3EB149:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: EyereadStack/WebService/Service/SecurityGroup
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      VpcId:
+        Ref: EyereadVpcCF35CAF8
+    DependsOn:
+      - WebServiceTaskDefTaskRole39B734D2
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/Service/SecurityGroup/Resource
+  WebServiceSecurityGroupfromEyereadStackWebServiceLBSecurityGroup4FF7C3D43000F3355988:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      Description: Load balancer to target
+      FromPort: 3000
+      GroupId:
+        Fn::GetAtt:
+          - WebServiceSecurityGroup7A3EB149
+          - GroupId
+      IpProtocol: tcp
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+          - WebServiceLBSecurityGroup66424F28
+          - GroupId
+      ToPort: 3000
+    DependsOn:
+      - WebServiceTaskDefTaskRole39B734D2
+    Metadata:
+      aws:cdk:path: EyereadStack/WebService/Service/SecurityGroup/from EyereadStackWebServiceLBSecurityGroup4FF7C3D4:3000
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Analytics: v2:deflate64:H4sIAAAAAAAA/31S0Y7aMBD8lnv3uS2oVV+Bwgnp2kbJ6V7RxlmCL8GOvGsQsvLvlR0CEa36tLOT2c3OJDM5m3+Xn5/gTM+qap5bXcpQMKhGwJl2geYyLL1qkMVqb65oKEsg7EV1MXC0VSnDG5QtRlUCvUA1k+G9U5F6z1Yi82WrVeFLMyy7o9x6xtv4wN+5BZFVGlhbcxNHsN5msfwCfgHGM1xE5vQJGO+Lt4bRGbwJhkuu3YIZ1OGIhkWByjvNlxdnfZdu+C+xrh0S/UVvTeKjc5Jh1XpidFE1wg24GqIran7gXhs9enpkrGHQBt2Eu84W6E5aDTkNML7OyZBjZ0mzdcnlveuFhqMMuR3CTTWzrVZJN6BetHAsK5Bh440ajxpxL2i+AyJkkotYRGtrkuHV1rd4RtwLYuz210naMVATpWn91pxsg2KtKPfJ8oNahgyIxAZ0K1YHG20WDIw/QR20GTxP+pTzrgOO35jkoutardJv8mqhWkILRmH1kBu2QKxVa6Eqk0Kb+jST4d/TbvA26ac6TYzmqhnx5PkbuBr5FtGk7XuRI1nvFIqUaMFQa1NH2W/PnedeGFuh/KBPp9lX+U1+efogrZ+dN6yPKPOh/gHF1aYEvQMAAA==
+    Metadata:
+      aws:cdk:path: EyereadStack/CDKMetadata/Default
+Outputs:
+  ApiServiceLoadBalancerDNSBF9EB7FC:
+    Value:
+      Fn::GetAtt:
+        - ApiServiceLB08B891CD
+        - DNSName
+  ApiServiceServiceURL2EB28DB2:
+    Value:
+      Fn::Join:
+        - ""
+        - - http://
+          - Fn::GetAtt:
+              - ApiServiceLB08B891CD
+              - DNSName
+  WebServiceLoadBalancerDNSE01F32A9:
+    Value:
+      Fn::GetAtt:
+        - WebServiceLB9CAD0C10
+        - DNSName
+  WebServiceServiceURL970B691A:
+    Value:
+      Fn::Join:
+        - ""
+        - - http://
+          - Fn::GetAtt:
+              - WebServiceLB9CAD0C10
+              - DNSName
+  ApiUrl:
+    Description: API Load Balancer URL
+    Value:
+      Fn::GetAtt:
+        - ApiServiceLB08B891CD
+        - DNSName
+  WebUrl:
+    Description: Web Frontend Load Balancer URL
+    Value:
+      Fn::GetAtt:
+        - WebServiceLB9CAD0C10
+        - DNSName
+  UploadsBucketName:
+    Value:
+      Ref: UploadsBucket5E5E9B64
+  RendersBucketName:
+    Value:
+      Ref: RendersBucket07FBD0F6
+  StateMachineArn:
+    Value:
+      Ref: EyereadPipeline6369F73A
+  ClusterName:
+    Value:
+      Ref: EyereadClusterC6EDCA75
+Parameters:
+  BootstrapVersion:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /cdk-bootstrap/hnb659fds/version
+    Description: Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]
+
+75 feature flags are not configured. Run 'cdk flags --unstable=flags' to learn more.
+
+NOTICES         (What's this? https://github.com/aws/aws-cdk/wiki/CLI-Notices)
+
+34892	CDK CLI collects telemetry data on command usage starting at version 2.1100.0 (unless opted out)
+
+	Overview: We do not collect customer content and we anonymize the
+	          telemetry we do collect. See the attached issue for more
+	          information on what data is collected, why, and how to
+	          opt-out. Telemetry will NOT be collected for any CDK CLI
+	          version prior to version 2.1100.0 - regardless of
+	          opt-in/out. You can also view the telemetry we collect by
+	          logging it to a local file, by adding
+	          `--telemetry-file=my/local/file` to any `cdk` command.
+
+	Affected versions: cli: >=2.1100.0 <2.1106.1
+
+	More information at: https://github.com/aws/aws-cdk/issues/34892
+
+
+If you donΓÇÖt want to see a notice anymore, use "cdk acknowledge <id>". For example, "cdk acknowledge 34892".

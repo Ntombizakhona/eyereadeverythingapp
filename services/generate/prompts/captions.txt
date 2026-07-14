@@ -1,0 +1,30 @@
+Convert the following narration script into SRT (SubRip) subtitle format.
+
+## Script
+{script}
+
+## Target Duration
+{target_duration_sec} seconds total
+
+## Rules
+- Each subtitle should be 1-2 lines, max 42 characters per line
+- Each subtitle duration: 2-4 seconds
+- Properly format timestamps as HH:MM:SS,mmm
+- Sequential numbering starting from 1
+- Break at natural pause points (sentences, clauses)
+- Do NOT include delivery cues like [pause] or [emphasis] in the subtitles
+
+## Output Format
+Return ONLY valid SRT format. Example:
+
+1
+00:00:00,000 --> 00:00:03,500
+Did you know that 90% of
+startups fail?
+
+2
+00:00:04,000 --> 00:00:07,500
+But here's the thing — most of them
+fail for the exact same reasons.
+
+Generate the complete SRT now.

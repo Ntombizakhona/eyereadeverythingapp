@@ -1,0 +1,69 @@
+[WARNING] aws-cdk-lib.aws_ecs.ClusterProps#containerInsights is deprecated.
+  See {@link containerInsightsV2 }
+  This API will be removed in the next major release.
+(node:21980) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:19352) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ΓÅ│  Bootstrapping environment aws://419892868210/us-east-1...
+Trusted accounts for deployment: (none)
+Trusted accounts for lookup: (none)
+Using default execution policy of 'arn:aws:iam::aws:policy/AdministratorAccess'. Pass '--cloudformation-execution-policies' to customize.
+CDKToolkit: creating CloudFormation changeset...
+CDKToolkit |  0/12 | 14:31:52 | REVIEW_IN_PROGRESS   | AWS::CloudFormation::Stack | CDKToolkit User Initiated
+CDKToolkit |  0/12 | 14:32:01 | CREATE_IN_PROGRESS   | AWS::CloudFormation::Stack | CDKToolkit User Initiated
+CDKToolkit |  0/12 | 14:32:04 | CREATE_IN_PROGRESS   | AWS::IAM::Role             | FilePublishingRole 
+CDKToolkit |  0/12 | 14:32:04 | CREATE_IN_PROGRESS   | AWS::ECR::Repository       | ContainerAssetsRepository 
+CDKToolkit |  0/12 | 14:32:04 | CREATE_IN_PROGRESS   | AWS::IAM::Role             | LookupRole 
+CDKToolkit |  0/12 | 14:32:04 | CREATE_IN_PROGRESS   | AWS::S3::Bucket            | StagingBucket 
+CDKToolkit |  0/12 | 14:32:04 | CREATE_IN_PROGRESS   | AWS::IAM::Role             | CloudFormationExecutionRole 
+CDKToolkit |  0/12 | 14:32:04 | CREATE_IN_PROGRESS   | AWS::IAM::Role             | ImagePublishingRole 
+CDKToolkit |  0/12 | 14:32:04 | CREATE_IN_PROGRESS   | AWS::SSM::Parameter        | CdkBootstrapVersion 
+CDKToolkit |  0/12 | 14:32:05 | CREATE_IN_PROGRESS   | AWS::IAM::Role             | FilePublishingRole Resource creation Initiated
+CDKToolkit |  0/12 | 14:32:05 | CREATE_IN_PROGRESS   | AWS::IAM::Role             | LookupRole Resource creation Initiated
+CDKToolkit |  0/12 | 14:32:05 | CREATE_IN_PROGRESS   | AWS::IAM::Role             | ImagePublishingRole Resource creation Initiated
+CDKToolkit |  0/12 | 14:32:05 | CREATE_IN_PROGRESS   | AWS::IAM::Role             | CloudFormationExecutionRole Resource creation Initiated
+CDKToolkit |  0/12 | 14:32:05 | CREATE_IN_PROGRESS   | AWS::ECR::Repository       | ContainerAssetsRepository Resource creation Initiated
+CDKToolkit |  0/12 | 14:32:05 | CREATE_IN_PROGRESS   | AWS::SSM::Parameter        | CdkBootstrapVersion Resource creation Initiated
+CDKToolkit |  0/12 | 14:32:05 | CREATE_IN_PROGRESS   | AWS::S3::Bucket            | StagingBucket Resource creation Initiated
+CDKToolkit |  1/12 | 14:32:06 | CREATE_COMPLETE      | AWS::SSM::Parameter        | CdkBootstrapVersion 
+CDKToolkit |  2/12 | 14:32:06 | CREATE_COMPLETE      | AWS::ECR::Repository       | ContainerAssetsRepository 
+CDKToolkit |  3/12 | 14:32:19 | CREATE_COMPLETE      | AWS::S3::Bucket            | StagingBucket 
+CDKToolkit |  3/12 | 14:32:21 | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy      | StagingBucketPolicy 
+CDKToolkit |  3/12 | 14:32:22 | CREATE_IN_PROGRESS   | AWS::S3::BucketPolicy      | StagingBucketPolicy Resource creation Initiated
+CDKToolkit |  4/12 | 14:32:22 | CREATE_COMPLETE      | AWS::IAM::Role             | FilePublishingRole 
+CDKToolkit |  5/12 | 14:32:22 | CREATE_COMPLETE      | AWS::S3::BucketPolicy      | StagingBucketPolicy 
+CDKToolkit |  6/12 | 14:32:23 | CREATE_COMPLETE      | AWS::IAM::Role             | ImagePublishingRole 
+CDKToolkit |  7/12 | 14:32:23 | CREATE_COMPLETE      | AWS::IAM::Role             | CloudFormationExecutionRole 
+CDKToolkit |  8/12 | 14:32:23 | CREATE_COMPLETE      | AWS::IAM::Role             | LookupRole 
+CDKToolkit |  8/12 | 14:32:23 | CREATE_IN_PROGRESS   | AWS::IAM::Policy           | FilePublishingRoleDefaultPolicy 
+CDKToolkit |  8/12 | 14:32:24 | CREATE_IN_PROGRESS   | AWS::IAM::Policy           | ImagePublishingRoleDefaultPolicy 
+CDKToolkit |  8/12 | 14:32:24 | CREATE_IN_PROGRESS   | AWS::IAM::Role             | DeploymentActionRole 
+CDKToolkit |  8/12 | 14:32:24 | CREATE_IN_PROGRESS   | AWS::IAM::Policy           | FilePublishingRoleDefaultPolicy Resource creation Initiated
+CDKToolkit |  8/12 | 14:32:24 | CREATE_IN_PROGRESS   | AWS::IAM::Policy           | ImagePublishingRoleDefaultPolicy Resource creation Initiated
+CDKToolkit |  8/12 | 14:32:25 | CREATE_IN_PROGRESS   | AWS::IAM::Role             | DeploymentActionRole Resource creation Initiated
+CDKToolkit |  9/12 | 14:32:40 | CREATE_COMPLETE      | AWS::IAM::Policy           | FilePublishingRoleDefaultPolicy 
+CDKToolkit | 10/12 | 14:32:40 | CREATE_COMPLETE      | AWS::IAM::Policy           | ImagePublishingRoleDefaultPolicy 
+CDKToolkit | 11/12 | 14:32:42 | CREATE_COMPLETE      | AWS::IAM::Role             | DeploymentActionRole 
+CDKToolkit | 12/12 | 14:32:44 | CREATE_COMPLETE      | AWS::CloudFormation::Stack | CDKToolkit 
+ Γ£à  Environment aws://419892868210/us-east-1 bootstrapped.
+
+NOTICES         (What's this? https://github.com/aws/aws-cdk/wiki/CLI-Notices)
+
+34892	CDK CLI collects telemetry data on command usage starting at version 2.1100.0 (unless opted out)
+
+	Overview: We do not collect customer content and we anonymize the
+	          telemetry we do collect. See the attached issue for more
+	          information on what data is collected, why, and how to
+	          opt-out. Telemetry will NOT be collected for any CDK CLI
+	          version prior to version 2.1100.0 - regardless of
+	          opt-in/out. You can also view the telemetry we collect by
+	          logging it to a local file, by adding
+	          `--telemetry-file=my/local/file` to any `cdk` command.
+
+	Affected versions: cli: >=2.1100.0 <2.1106.1
+
+	More information at: https://github.com/aws/aws-cdk/issues/34892
+
+
+If you donΓÇÖt want to see a notice anymore, use "cdk acknowledge <id>". For example, "cdk acknowledge 34892".

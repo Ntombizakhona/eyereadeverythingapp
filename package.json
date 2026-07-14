@@ -1,0 +1,19 @@
+{
+  "name": "eyereadeverything",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Blog-to-Video & Talk-to-Video platform powered by Amazon Nova",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "cd apps/web && npm run dev",
+    "build:web": "cd apps/web && npm run build",
+    "dev:api": "cd apps/api && uvicorn main:app --reload --port 8000",
+    "infra:synth": "cd infra && npx cdk synth",
+    "infra:deploy": "cd infra && npx cdk deploy"
+  },
+  "author": "eyereadeverything",
+  "license": "MIT"
+}

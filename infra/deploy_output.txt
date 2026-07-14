@@ -1,0 +1,338 @@
+[WARNING] aws-cdk-lib.aws_ecs.ClusterProps#containerInsights is deprecated.
+  See {@link containerInsightsV2 }
+  This API will be removed in the next major release.
+(node:24884) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:12580) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[Warning at /EyereadStack/ApiService/Service] minHealthyPercent has not been configured so the default value of 50% is used. The number of running tasks will decrease below the desired count during deployments etc. See https://github.com/aws/aws-cdk/issues/31705 [ack: @aws-cdk/aws-ecs:minHealthyPercent]
+[Warning at /EyereadStack/WebService/Service] minHealthyPercent has not been configured so the default value of 50% is used. The number of running tasks will decrease below the desired count during deployments etc. See https://github.com/aws/aws-cdk/issues/31705 [ack: @aws-cdk/aws-ecs:minHealthyPercent]
+
+Γ£¿  Synthesis time: 11.6s
+
+EyereadStack: start: Building ValidateFn/Code
+EyereadStack: success: Built ValidateFn/Code
+EyereadStack: start: Building IngestFn/Code
+EyereadStack: success: Built IngestFn/Code
+EyereadStack: start: Building ContextFn/Code
+EyereadStack: success: Built ContextFn/Code
+EyereadStack: start: Building GenerateFn/Code
+EyereadStack: success: Built GenerateFn/Code
+EyereadStack: start: Building TtsFn/Code
+EyereadStack: success: Built TtsFn/Code
+EyereadStack: start: Building PackageFn/Code
+EyereadStack: success: Built PackageFn/Code
+EyereadStack: start: Building EyereadStack Template
+EyereadStack: success: Built EyereadStack Template
+EyereadStack: start: Publishing TtsFn/Code (419892868210-us-east-1-5eb5c70b)
+EyereadStack: start: Publishing ValidateFn/Code (419892868210-us-east-1-bd2ee2da)
+EyereadStack: start: Publishing ContextFn/Code (419892868210-us-east-1-c0fc10c9)
+EyereadStack: start: Publishing IngestFn/Code (419892868210-us-east-1-141c4645)
+EyereadStack: start: Publishing GenerateFn/Code (419892868210-us-east-1-bf35fb88)
+EyereadStack: start: Publishing EyereadStack Template (419892868210-us-east-1-b4b19350)
+EyereadStack: start: Publishing PackageFn/Code (419892868210-us-east-1-22067698)
+EyereadStack: success: Published EyereadStack Template (419892868210-us-east-1-b4b19350)
+EyereadStack: success: Published PackageFn/Code (419892868210-us-east-1-22067698)
+EyereadStack: success: Published TtsFn/Code (419892868210-us-east-1-5eb5c70b)
+EyereadStack: success: Published IngestFn/Code (419892868210-us-east-1-141c4645)
+EyereadStack: success: Published ContextFn/Code (419892868210-us-east-1-c0fc10c9)
+EyereadStack: success: Published ValidateFn/Code (419892868210-us-east-1-bd2ee2da)
+EyereadStack: success: Published GenerateFn/Code (419892868210-us-east-1-bf35fb88)
+EyereadStack: deploying... [1/1]
+EyereadStack: creating CloudFormation changeset...
+EyereadStack |  0/85 | 14:35:55 | REVIEW_IN_PROGRESS   | AWS::CloudFormation::Stack                | EyereadStack User Initiated
+EyereadStack |  0/85 | 14:36:05 | CREATE_IN_PROGRESS   | AWS::CloudFormation::Stack                | EyereadStack User Initiated
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | LambdaPipelineRole (LambdaPipelineRole9EA64C9D) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::ECR::Repository                      | RenderRepo (RenderRepoC853E822) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | ApiService/TaskDef/TaskRole (ApiServiceTaskDefTaskRole1014CB34) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | NovaActTaskDef/nova-act/LogGroup (NovaActTaskDefnovaactLogGroupB8E7AB0A) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::S3::Bucket                           | RendersBucket (RendersBucket07FBD0F6) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | RenderTaskDef/render/LogGroup (RenderTaskDefrenderLogGroup90A5169B) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | WebService/TaskDef/TaskRole (WebServiceTaskDefTaskRole39B734D2) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::ECR::Repository                      | WebRepo (WebRepo9D56C0A3) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::CDK::Metadata                        | CDKMetadata/Default (CDKMetadata) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::ECR::Repository                      | NovaActRepo (NovaActRepoC46EFF0A) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table                      | VoiceProfilesTable (VoiceProfilesTable81418450) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | NovaActTaskDef/ExecutionRole (NovaActTaskDefExecutionRole4FC947E5) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::EC2::InternetGateway                 | EyereadVpc/IGW (EyereadVpcIGWB9298599) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::ECS::Cluster                         | EyereadCluster (EyereadClusterC6EDCA75) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | WebService/TaskDef/web/LogGroup (WebServiceTaskDefwebLogGroup66B9C4A1) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::EC2::EIP                             | EyereadVpc/PublicSubnet1/EIP (EyereadVpcPublicSubnet1EIP6C7DBCEA) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::S3::Bucket                           | UploadsBucket (UploadsBucket5E5E9B64) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | ApiService/TaskDef/web/LogGroup (ApiServiceTaskDefwebLogGroup57352A09) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::ECR::Repository                      | ApiRepo (ApiRepoEFA7BA97) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | ApiService/TaskDef/ExecutionRole (ApiServiceTaskDefExecutionRole43B90DD6) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table                      | JobsTable (JobsTable1970BC16) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | NovaActTaskDef/TaskRole (NovaActTaskDefTaskRoleBED38C3F) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | SfnLogs (SfnLogs9D18D4A1) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | RenderTaskDef/ExecutionRole (RenderTaskDefExecutionRole6A97D60F) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | RenderTaskDef/TaskRole (RenderTaskDefTaskRole4F1AF00E) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::EC2::VPC                             | EyereadVpc (EyereadVpcCF35CAF8) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | EyereadPipeline/Role (EyereadPipelineRole30F7D69D) 
+EyereadStack |  0/85 | 14:36:09 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | WebService/TaskDef/ExecutionRole (WebServiceTaskDefExecutionRole9E63B6B2) 
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | ApiService/TaskDef/web/LogGroup (ApiServiceTaskDefwebLogGroup57352A09) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | ApiService/TaskDef/TaskRole (ApiServiceTaskDefTaskRole1014CB34) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | NovaActTaskDef/nova-act/LogGroup (NovaActTaskDefnovaactLogGroupB8E7AB0A) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | RenderTaskDef/render/LogGroup (RenderTaskDefrenderLogGroup90A5169B) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | WebService/TaskDef/web/LogGroup (WebServiceTaskDefwebLogGroup66B9C4A1) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | ApiService/TaskDef/ExecutionRole (ApiServiceTaskDefExecutionRole43B90DD6) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | LambdaPipelineRole (LambdaPipelineRole9EA64C9D) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::ECR::Repository                      | ApiRepo (ApiRepoEFA7BA97) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::EC2::InternetGateway                 | EyereadVpc/IGW (EyereadVpcIGWB9298599) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | NovaActTaskDef/TaskRole (NovaActTaskDefTaskRoleBED38C3F) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | WebService/TaskDef/TaskRole (WebServiceTaskDefTaskRole39B734D2) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::ECR::Repository                      | WebRepo (WebRepo9D56C0A3) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | RenderTaskDef/TaskRole (RenderTaskDefTaskRole4F1AF00E) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | NovaActTaskDef/ExecutionRole (NovaActTaskDefExecutionRole4FC947E5) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | RenderTaskDef/ExecutionRole (RenderTaskDefExecutionRole6A97D60F) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | EyereadPipeline/Role (EyereadPipelineRole30F7D69D) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::ECS::Cluster                         | EyereadCluster (EyereadClusterC6EDCA75) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::ECR::Repository                      | RenderRepo (RenderRepoC853E822) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | SfnLogs (SfnLogs9D18D4A1) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::IAM::Role                            | WebService/TaskDef/ExecutionRole (WebServiceTaskDefExecutionRole9E63B6B2) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::ECR::Repository                      | NovaActRepo (NovaActRepoC46EFF0A) Resource creation Initiated
+EyereadStack |  0/85 | 14:36:10 | CREATE_IN_PROGRESS   | AWS::CDK::Metadata                        | CDKMetadata/Default (CDKMetadata) Resource creation Initiated
+EyereadStack |  1/85 | 14:36:10 | CREATE_COMPLETE      | AWS::CDK::Metadata                        | CDKMetadata/Default (CDKMetadata) 
+EyereadStack |  1/85 | 14:36:11 | CREATE_IN_PROGRESS   | AWS::S3::Bucket                           | RendersBucket (RendersBucket07FBD0F6) Resource creation Initiated
+EyereadStack |  1/85 | 14:36:11 | CREATE_IN_PROGRESS   | AWS::S3::Bucket                           | UploadsBucket (UploadsBucket5E5E9B64) Resource creation Initiated
+EyereadStack |  1/85 | 14:36:11 | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table                      | JobsTable (JobsTable1970BC16) Resource creation Initiated
+EyereadStack |  1/85 | 14:36:11 | CREATE_IN_PROGRESS   | AWS::DynamoDB::Table                      | VoiceProfilesTable (VoiceProfilesTable81418450) Resource creation Initiated
+EyereadStack |  1/85 | 14:36:11 | CREATE_IN_PROGRESS   | AWS::EC2::VPC                             | EyereadVpc (EyereadVpcCF35CAF8) Resource creation Initiated
+EyereadStack |  1/85 | 14:36:11 | CREATE_IN_PROGRESS   | AWS::ECS::Cluster                         | EyereadCluster (EyereadClusterC6EDCA75) Eventual consistency check initiated
+EyereadStack |  1/85 | 14:36:11 | CREATE_IN_PROGRESS   | AWS::EC2::InternetGateway                 | EyereadVpc/IGW (EyereadVpcIGWB9298599) Eventual consistency check initiated
+EyereadStack |  2/85 | 14:36:11 | CREATE_COMPLETE      | AWS::ECR::Repository                      | ApiRepo (ApiRepoEFA7BA97) 
+EyereadStack |  3/85 | 14:36:11 | CREATE_COMPLETE      | AWS::ECR::Repository                      | WebRepo (WebRepo9D56C0A3) 
+EyereadStack |  4/85 | 14:36:11 | CREATE_COMPLETE      | AWS::ECR::Repository                      | NovaActRepo (NovaActRepoC46EFF0A) 
+EyereadStack |  5/85 | 14:36:11 | CREATE_COMPLETE      | AWS::ECR::Repository                      | RenderRepo (RenderRepoC853E822) 
+EyereadStack |  5/85 | 14:36:12 | CREATE_IN_PROGRESS   | AWS::EC2::EIP                             | EyereadVpc/PublicSubnet1/EIP (EyereadVpcPublicSubnet1EIP6C7DBCEA) Resource creation Initiated
+EyereadStack |  5/85 | 14:36:12 | CREATE_IN_PROGRESS   | AWS::EC2::EIP                             | EyereadVpc/PublicSubnet1/EIP (EyereadVpcPublicSubnet1EIP6C7DBCEA) Eventual consistency check initiated
+EyereadStack |  6/85 | 14:36:14 | CREATE_COMPLETE      | AWS::ECS::Cluster                         | EyereadCluster (EyereadClusterC6EDCA75) 
+EyereadStack |  7/85 | 14:36:17 | CREATE_COMPLETE      | AWS::Logs::LogGroup                       | ApiService/TaskDef/web/LogGroup (ApiServiceTaskDefwebLogGroup57352A09) 
+EyereadStack |  8/85 | 14:36:17 | CREATE_COMPLETE      | AWS::Logs::LogGroup                       | WebService/TaskDef/web/LogGroup (WebServiceTaskDefwebLogGroup66B9C4A1) 
+EyereadStack |  8/85 | 14:36:19 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | RenderTaskDef/render/LogGroup (RenderTaskDefrenderLogGroup90A5169B) Eventual consistency check initiated
+EyereadStack |  8/85 | 14:36:19 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | NovaActTaskDef/nova-act/LogGroup (NovaActTaskDefnovaactLogGroupB8E7AB0A) Eventual consistency check initiated
+EyereadStack |  9/85 | 14:36:19 | CREATE_COMPLETE      | AWS::Logs::LogGroup                       | NovaActTaskDef/nova-act/LogGroup (NovaActTaskDefnovaactLogGroupB8E7AB0A) 
+EyereadStack | 10/85 | 14:36:19 | CREATE_COMPLETE      | AWS::Logs::LogGroup                       | RenderTaskDef/render/LogGroup (RenderTaskDefrenderLogGroup90A5169B) 
+EyereadStack | 10/85 | 14:36:19 | CREATE_IN_PROGRESS   | AWS::Logs::LogGroup                       | SfnLogs (SfnLogs9D18D4A1) Eventual consistency check initiated
+EyereadStack | 11/85 | 14:36:20 | CREATE_COMPLETE      | AWS::Logs::LogGroup                       | SfnLogs (SfnLogs9D18D4A1) 
+EyereadStack | 12/85 | 14:36:23 | CREATE_COMPLETE      | AWS::EC2::VPC                             | EyereadVpc (EyereadVpcCF35CAF8) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PrivateSubnet2/RouteTable (EyereadVpcPrivateSubnet2RouteTable26EA0E10) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::Subnet                          | EyereadVpc/PrivateSubnet2/Subnet (EyereadVpcPrivateSubnet2SubnetE9B20CE3) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::Subnet                          | EyereadVpc/PrivateSubnet1/Subnet (EyereadVpcPrivateSubnet1Subnet6AF22454) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | ApiService/LB/SecurityGroup (ApiServiceLBSecurityGroup5C16BEF8) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | RenderVideo/SecurityGroup (RenderVideoSecurityGroup1D6E276F) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PublicSubnet2/RouteTable (EyereadVpcPublicSubnet2RouteTableAF0A6B68) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::Subnet                          | EyereadVpc/PublicSubnet2/Subnet (EyereadVpcPublicSubnet2SubnetB37D5A62) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::Subnet                          | EyereadVpc/PublicSubnet1/Subnet (EyereadVpcPublicSubnet1SubnetB8DB2FE2) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | UploadYouTube/SecurityGroup (UploadYouTubeSecurityGroup845F0FD7) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | WebService/LB/SecurityGroup (WebServiceLBSecurityGroup66424F28) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::TargetGroup  | WebService/LB/PublicListener/ECSGroup (WebServiceLBPublicListenerECSGroup909B7188) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PrivateSubnet1/RouteTable (EyereadVpcPrivateSubnet1RouteTable8377D68C) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::VPCGatewayAttachment            | EyereadVpc/VPCGW (EyereadVpcVPCGW4A4E2A4D) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PublicSubnet1/RouteTable (EyereadVpcPublicSubnet1RouteTableEB32F88C) 
+EyereadStack | 12/85 | 14:36:24 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::TargetGroup  | ApiService/LB/PublicListener/ECSGroup (ApiServiceLBPublicListenerECSGroup14A87FE9) 
+EyereadStack | 13/85 | 14:36:24 | CREATE_COMPLETE      | AWS::S3::Bucket                           | RendersBucket (RendersBucket07FBD0F6) 
+EyereadStack | 14/85 | 14:36:25 | CREATE_COMPLETE      | AWS::S3::Bucket                           | UploadsBucket (UploadsBucket5E5E9B64) 
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PrivateSubnet2/RouteTable (EyereadVpcPrivateSubnet2RouteTable26EA0E10) Resource creation Initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::Subnet                          | EyereadVpc/PrivateSubnet2/Subnet (EyereadVpcPrivateSubnet2SubnetE9B20CE3) Resource creation Initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::VPCGatewayAttachment            | EyereadVpc/VPCGW (EyereadVpcVPCGW4A4E2A4D) Resource creation Initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PrivateSubnet1/RouteTable (EyereadVpcPrivateSubnet1RouteTable8377D68C) Resource creation Initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PublicSubnet2/RouteTable (EyereadVpcPublicSubnet2RouteTableAF0A6B68) Resource creation Initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::Subnet                          | EyereadVpc/PublicSubnet1/Subnet (EyereadVpcPublicSubnet1SubnetB8DB2FE2) Resource creation Initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::Subnet                          | EyereadVpc/PrivateSubnet1/Subnet (EyereadVpcPrivateSubnet1Subnet6AF22454) Resource creation Initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PublicSubnet1/RouteTable (EyereadVpcPublicSubnet1RouteTableEB32F88C) Resource creation Initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::TargetGroup  | WebService/LB/PublicListener/ECSGroup (WebServiceLBPublicListenerECSGroup909B7188) Resource creation Initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::TargetGroup  | ApiService/LB/PublicListener/ECSGroup (ApiServiceLBPublicListenerECSGroup14A87FE9) Resource creation Initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PrivateSubnet2/RouteTable (EyereadVpcPrivateSubnet2RouteTable26EA0E10) Eventual consistency check initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PrivateSubnet1/RouteTable (EyereadVpcPrivateSubnet1RouteTable8377D68C) Eventual consistency check initiated
+EyereadStack | 14/85 | 14:36:25 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PublicSubnet2/RouteTable (EyereadVpcPublicSubnet2RouteTableAF0A6B68) Eventual consistency check initiated
+EyereadStack | 14/85 | 14:36:26 | CREATE_IN_PROGRESS   | AWS::EC2::RouteTable                      | EyereadVpc/PublicSubnet1/RouteTable (EyereadVpcPublicSubnet1RouteTableEB32F88C) Eventual consistency check initiated
+EyereadStack | 14/85 | 14:36:26 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | RenderVideo/SecurityGroup (RenderVideoSecurityGroup1D6E276F) Resource creation Initiated
+EyereadStack | 15/85 | 14:36:26 | CREATE_COMPLETE      | AWS::EC2::InternetGateway                 | EyereadVpc/IGW (EyereadVpcIGWB9298599) 
+EyereadStack | 15/85 | 14:36:26 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | UploadYouTube/SecurityGroup (UploadYouTubeSecurityGroup845F0FD7) Resource creation Initiated
+EyereadStack | 15/85 | 14:36:26 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | WebService/LB/SecurityGroup (WebServiceLBSecurityGroup66424F28) Resource creation Initiated
+EyereadStack | 16/85 | 14:36:27 | CREATE_COMPLETE      | AWS::IAM::Role                            | ApiService/TaskDef/TaskRole (ApiServiceTaskDefTaskRole1014CB34) 
+EyereadStack | 16/85 | 14:36:27 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | ApiService/LB/SecurityGroup (ApiServiceLBSecurityGroup5C16BEF8) Resource creation Initiated
+EyereadStack | 17/85 | 14:36:27 | CREATE_COMPLETE      | AWS::IAM::Role                            | ApiService/TaskDef/ExecutionRole (ApiServiceTaskDefExecutionRole43B90DD6) 
+EyereadStack | 18/85 | 14:36:27 | CREATE_COMPLETE      | AWS::IAM::Role                            | LambdaPipelineRole (LambdaPipelineRole9EA64C9D) 
+EyereadStack | 19/85 | 14:36:27 | CREATE_COMPLETE      | AWS::EC2::VPCGatewayAttachment            | EyereadVpc/VPCGW (EyereadVpcVPCGW4A4E2A4D) 
+EyereadStack | 20/85 | 14:36:27 | CREATE_COMPLETE      | AWS::IAM::Role                            | RenderTaskDef/ExecutionRole (RenderTaskDefExecutionRole6A97D60F) 
+EyereadStack | 21/85 | 14:36:27 | CREATE_COMPLETE      | AWS::IAM::Role                            | NovaActTaskDef/TaskRole (NovaActTaskDefTaskRoleBED38C3F) 
+EyereadStack | 22/85 | 14:36:27 | CREATE_COMPLETE      | AWS::IAM::Role                            | WebService/TaskDef/TaskRole (WebServiceTaskDefTaskRole39B734D2) 
+EyereadStack | 23/85 | 14:36:27 | CREATE_COMPLETE      | AWS::IAM::Role                            | NovaActTaskDef/ExecutionRole (NovaActTaskDefExecutionRole4FC947E5) 
+EyereadStack | 23/85 | 14:36:27 | CREATE_IN_PROGRESS   | AWS::EC2::Subnet                          | EyereadVpc/PublicSubnet2/Subnet (EyereadVpcPublicSubnet2SubnetB37D5A62) Resource creation Initiated
+EyereadStack | 24/85 | 14:36:27 | CREATE_COMPLETE      | AWS::IAM::Role                            | EyereadPipeline/Role (EyereadPipelineRole30F7D69D) 
+EyereadStack | 25/85 | 14:36:27 | CREATE_COMPLETE      | AWS::IAM::Role                            | RenderTaskDef/TaskRole (RenderTaskDefTaskRole4F1AF00E) 
+EyereadStack | 25/85 | 14:36:27 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | WebService/Service/SecurityGroup (WebServiceSecurityGroup7A3EB149) 
+EyereadStack | 25/85 | 14:36:28 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | ApiService/TaskDef/ExecutionRole/DefaultPolicy (ApiServiceTaskDefExecutionRoleDefaultPolicyDCB48050) 
+EyereadStack | 26/85 | 14:36:28 | CREATE_COMPLETE      | AWS::EC2::EIP                             | EyereadVpc/PublicSubnet1/EIP (EyereadVpcPublicSubnet1EIP6C7DBCEA) 
+EyereadStack | 26/85 | 14:36:28 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | NovaActTaskDef/ExecutionRole/DefaultPolicy (NovaActTaskDefExecutionRoleDefaultPolicy064AC0D1) 
+EyereadStack | 26/85 | 14:36:28 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | RenderTaskDef/ExecutionRole/DefaultPolicy (RenderTaskDefExecutionRoleDefaultPolicyCBE9F10D) 
+EyereadStack | 27/85 | 14:36:28 | CREATE_COMPLETE      | AWS::EC2::Subnet                          | EyereadVpc/PrivateSubnet2/Subnet (EyereadVpcPrivateSubnet2SubnetE9B20CE3) 
+EyereadStack | 28/85 | 14:36:28 | CREATE_COMPLETE      | AWS::EC2::Subnet                          | EyereadVpc/PrivateSubnet1/Subnet (EyereadVpcPrivateSubnet1Subnet6AF22454) 
+EyereadStack | 29/85 | 14:36:28 | CREATE_COMPLETE      | AWS::EC2::Subnet                          | EyereadVpc/PublicSubnet1/Subnet (EyereadVpcPublicSubnet1SubnetB8DB2FE2) 
+EyereadStack | 29/85 | 14:36:29 | CREATE_IN_PROGRESS   | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PrivateSubnet2/RouteTableAssociation (EyereadVpcPrivateSubnet2RouteTableAssociation49D57A0C) 
+EyereadStack | 29/85 | 14:36:29 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | ApiService/TaskDef/ExecutionRole/DefaultPolicy (ApiServiceTaskDefExecutionRoleDefaultPolicyDCB48050) Resource creation Initiated
+EyereadStack | 29/85 | 14:36:29 | CREATE_IN_PROGRESS   | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PrivateSubnet1/RouteTableAssociation (EyereadVpcPrivateSubnet1RouteTableAssociation14053B72) 
+EyereadStack | 29/85 | 14:36:29 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | RenderTaskDef/ExecutionRole/DefaultPolicy (RenderTaskDefExecutionRoleDefaultPolicyCBE9F10D) Resource creation Initiated
+EyereadStack | 29/85 | 14:36:29 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | NovaActTaskDef/ExecutionRole/DefaultPolicy (NovaActTaskDefExecutionRoleDefaultPolicy064AC0D1) Resource creation Initiated
+EyereadStack | 29/85 | 14:36:29 | CREATE_IN_PROGRESS   | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PublicSubnet1/RouteTableAssociation (EyereadVpcPublicSubnet1RouteTableAssociation3729396B) 
+EyereadStack | 29/85 | 14:36:30 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | WebService/Service/SecurityGroup (WebServiceSecurityGroup7A3EB149) Resource creation Initiated
+EyereadStack | 29/85 | 14:36:30 | CREATE_IN_PROGRESS   | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PrivateSubnet2/RouteTableAssociation (EyereadVpcPrivateSubnet2RouteTableAssociation49D57A0C) Resource creation Initiated
+EyereadStack | 29/85 | 14:36:30 | CREATE_IN_PROGRESS   | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PrivateSubnet1/RouteTableAssociation (EyereadVpcPrivateSubnet1RouteTableAssociation14053B72) Resource creation Initiated
+EyereadStack | 29/85 | 14:36:31 | CREATE_IN_PROGRESS   | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PublicSubnet1/RouteTableAssociation (EyereadVpcPublicSubnet1RouteTableAssociation3729396B) Resource creation Initiated
+EyereadStack | 30/85 | 14:36:31 | CREATE_COMPLETE      | AWS::EC2::Subnet                          | EyereadVpc/PublicSubnet2/Subnet (EyereadVpcPublicSubnet2SubnetB37D5A62) 
+EyereadStack | 31/85 | 14:36:31 | CREATE_COMPLETE      | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PrivateSubnet2/RouteTableAssociation (EyereadVpcPrivateSubnet2RouteTableAssociation49D57A0C) 
+EyereadStack | 32/85 | 14:36:31 | CREATE_COMPLETE      | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PrivateSubnet1/RouteTableAssociation (EyereadVpcPrivateSubnet1RouteTableAssociation14053B72) 
+EyereadStack | 33/85 | 14:36:31 | CREATE_COMPLETE      | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PublicSubnet1/RouteTableAssociation (EyereadVpcPublicSubnet1RouteTableAssociation3729396B) 
+EyereadStack | 33/85 | 14:36:31 | CREATE_IN_PROGRESS   | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PublicSubnet2/RouteTableAssociation (EyereadVpcPublicSubnet2RouteTableAssociation8A5BB1F7) 
+EyereadStack | 34/85 | 14:36:32 | CREATE_COMPLETE      | AWS::IAM::Role                            | WebService/TaskDef/ExecutionRole (WebServiceTaskDefExecutionRole9E63B6B2) 
+EyereadStack | 35/85 | 14:36:33 | CREATE_COMPLETE      | AWS::EC2::SecurityGroup                   | WebService/LB/SecurityGroup (WebServiceLBSecurityGroup66424F28) 
+EyereadStack | 35/85 | 14:36:33 | CREATE_IN_PROGRESS   | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PublicSubnet2/RouteTableAssociation (EyereadVpcPublicSubnet2RouteTableAssociation8A5BB1F7) Resource creation Initiated
+EyereadStack | 36/85 | 14:36:33 | CREATE_COMPLETE      | AWS::EC2::SecurityGroup                   | UploadYouTube/SecurityGroup (UploadYouTubeSecurityGroup845F0FD7) 
+EyereadStack | 37/85 | 14:36:33 | CREATE_COMPLETE      | AWS::EC2::SecurityGroup                   | RenderVideo/SecurityGroup (RenderVideoSecurityGroup1D6E276F) 
+EyereadStack | 38/85 | 14:36:33 | CREATE_COMPLETE      | AWS::EC2::SecurityGroup                   | ApiService/LB/SecurityGroup (ApiServiceLBSecurityGroup5C16BEF8) 
+EyereadStack | 39/85 | 14:36:34 | CREATE_COMPLETE      | AWS::EC2::SubnetRouteTableAssociation     | EyereadVpc/PublicSubnet2/RouteTableAssociation (EyereadVpcPublicSubnet2RouteTableAssociation8A5BB1F7) 
+EyereadStack | 39/85 | 14:36:34 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | WebService/TaskDef/ExecutionRole/DefaultPolicy (WebServiceTaskDefExecutionRoleDefaultPolicyF65F7670) 
+EyereadStack | 40/85 | 14:36:34 | CREATE_COMPLETE      | AWS::DynamoDB::Table                      | VoiceProfilesTable (VoiceProfilesTable81418450) 
+EyereadStack | 40/85 | 14:36:35 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | WebService/TaskDef/ExecutionRole/DefaultPolicy (WebServiceTaskDefExecutionRoleDefaultPolicyF65F7670) Resource creation Initiated
+EyereadStack | 41/85 | 14:36:35 | CREATE_COMPLETE      | AWS::EC2::RouteTable                      | EyereadVpc/PrivateSubnet2/RouteTable (EyereadVpcPrivateSubnet2RouteTable26EA0E10) 
+EyereadStack | 42/85 | 14:36:36 | CREATE_COMPLETE      | AWS::EC2::RouteTable                      | EyereadVpc/PublicSubnet2/RouteTable (EyereadVpcPublicSubnet2RouteTableAF0A6B68) 
+EyereadStack | 43/85 | 14:36:36 | CREATE_COMPLETE      | AWS::EC2::RouteTable                      | EyereadVpc/PrivateSubnet1/RouteTable (EyereadVpcPrivateSubnet1RouteTable8377D68C) 
+EyereadStack | 44/85 | 14:36:36 | CREATE_COMPLETE      | AWS::EC2::RouteTable                      | EyereadVpc/PublicSubnet1/RouteTable (EyereadVpcPublicSubnet1RouteTableEB32F88C) 
+EyereadStack | 44/85 | 14:36:36 | CREATE_IN_PROGRESS   | AWS::EC2::Route                           | EyereadVpc/PublicSubnet2/DefaultRoute (EyereadVpcPublicSubnet2DefaultRouteC0BBA467) 
+EyereadStack | 44/85 | 14:36:36 | CREATE_IN_PROGRESS   | AWS::EC2::Route                           | EyereadVpc/PublicSubnet1/DefaultRoute (EyereadVpcPublicSubnet1DefaultRouteD7AF8652) 
+EyereadStack | 45/85 | 14:36:37 | CREATE_COMPLETE      | AWS::EC2::SecurityGroup                   | WebService/Service/SecurityGroup (WebServiceSecurityGroup7A3EB149) 
+EyereadStack | 45/85 | 14:36:37 | CREATE_IN_PROGRESS   | AWS::EC2::Route                           | EyereadVpc/PublicSubnet2/DefaultRoute (EyereadVpcPublicSubnet2DefaultRouteC0BBA467) Resource creation Initiated
+EyereadStack | 45/85 | 14:36:38 | CREATE_IN_PROGRESS   | AWS::EC2::Route                           | EyereadVpc/PublicSubnet1/DefaultRoute (EyereadVpcPublicSubnet1DefaultRouteD7AF8652) Resource creation Initiated
+EyereadStack | 45/85 | 14:36:38 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroupEgress             | WebService/LB/SecurityGroup/to EyereadStackWebServiceSecurityGroup271DD04E:3000 (WebServiceLBSecurityGrouptoEyereadStackWebServiceSecurityGroup271DD04E300002D9D936) 
+EyereadStack | 45/85 | 14:36:38 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroupIngress            | WebService/Service/SecurityGroup/from EyereadStackWebServiceLBSecurityGroup4FF7C3D4:3000 (WebServiceSecurityGroupfromEyereadStackWebServiceLBSecurityGroup4FF7C3D43000F3355988) 
+EyereadStack | 46/85 | 14:36:38 | CREATE_COMPLETE      | AWS::EC2::Route                           | EyereadVpc/PublicSubnet2/DefaultRoute (EyereadVpcPublicSubnet2DefaultRouteC0BBA467) 
+EyereadStack | 47/85 | 14:36:39 | CREATE_COMPLETE      | AWS::EC2::Route                           | EyereadVpc/PublicSubnet1/DefaultRoute (EyereadVpcPublicSubnet1DefaultRouteD7AF8652) 
+EyereadStack | 47/85 | 14:36:39 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroupIngress            | WebService/Service/SecurityGroup/from EyereadStackWebServiceLBSecurityGroup4FF7C3D4:3000 (WebServiceSecurityGroupfromEyereadStackWebServiceLBSecurityGroup4FF7C3D43000F3355988) Resource creation Initiated
+EyereadStack | 47/85 | 14:36:39 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::LoadBalancer | WebService/LB (WebServiceLB9CAD0C10) 
+EyereadStack | 47/85 | 14:36:39 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroupEgress             | WebService/LB/SecurityGroup/to EyereadStackWebServiceSecurityGroup271DD04E:3000 (WebServiceLBSecurityGrouptoEyereadStackWebServiceSecurityGroup271DD04E300002D9D936) Resource creation Initiated
+EyereadStack | 47/85 | 14:36:40 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::LoadBalancer | ApiService/LB (ApiServiceLB08B891CD) 
+EyereadStack | 47/85 | 14:36:40 | CREATE_IN_PROGRESS   | AWS::EC2::NatGateway                      | EyereadVpc/PublicSubnet1/NATGateway (EyereadVpcPublicSubnet1NATGatewayC0F5CE73) 
+EyereadStack | 48/85 | 14:36:40 | CREATE_COMPLETE      | AWS::EC2::SecurityGroupEgress             | WebService/LB/SecurityGroup/to EyereadStackWebServiceSecurityGroup271DD04E:3000 (WebServiceLBSecurityGrouptoEyereadStackWebServiceSecurityGroup271DD04E300002D9D936) 
+EyereadStack | 49/85 | 14:36:40 | CREATE_COMPLETE      | AWS::EC2::SecurityGroupIngress            | WebService/Service/SecurityGroup/from EyereadStackWebServiceLBSecurityGroup4FF7C3D4:3000 (WebServiceSecurityGroupfromEyereadStackWebServiceLBSecurityGroup4FF7C3D43000F3355988) 
+EyereadStack | 49/85 | 14:36:41 | CREATE_IN_PROGRESS   | AWS::EC2::NatGateway                      | EyereadVpc/PublicSubnet1/NATGateway (EyereadVpcPublicSubnet1NATGatewayC0F5CE73) Resource creation Initiated
+EyereadStack | 50/85 | 14:36:41 | CREATE_COMPLETE      | AWS::ElasticLoadBalancingV2::TargetGroup  | WebService/LB/PublicListener/ECSGroup (WebServiceLBPublicListenerECSGroup909B7188) 
+EyereadStack | 51/85 | 14:36:41 | CREATE_COMPLETE      | AWS::ElasticLoadBalancingV2::TargetGroup  | ApiService/LB/PublicListener/ECSGroup (ApiServiceLBPublicListenerECSGroup14A87FE9) 
+EyereadStack | 51/85 | 14:36:42 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::LoadBalancer | WebService/LB (WebServiceLB9CAD0C10) Resource creation Initiated
+EyereadStack | 51/85 | 14:36:42 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::LoadBalancer | ApiService/LB (ApiServiceLB08B891CD) Resource creation Initiated
+EyereadStack | 52/85 | 14:36:44 | CREATE_COMPLETE      | AWS::IAM::Policy                          | ApiService/TaskDef/ExecutionRole/DefaultPolicy (ApiServiceTaskDefExecutionRoleDefaultPolicyDCB48050) 
+EyereadStack | 53/85 | 14:36:44 | CREATE_COMPLETE      | AWS::IAM::Policy                          | RenderTaskDef/ExecutionRole/DefaultPolicy (RenderTaskDefExecutionRoleDefaultPolicyCBE9F10D) 
+EyereadStack | 54/85 | 14:36:45 | CREATE_COMPLETE      | AWS::DynamoDB::Table                      | JobsTable (JobsTable1970BC16) 
+EyereadStack | 55/85 | 14:36:45 | CREATE_COMPLETE      | AWS::IAM::Policy                          | NovaActTaskDef/ExecutionRole/DefaultPolicy (NovaActTaskDefExecutionRoleDefaultPolicy064AC0D1) 
+EyereadStack | 55/85 | 14:36:46 | CREATE_IN_PROGRESS   | AWS::ECS::TaskDefinition                  | RenderTaskDef (RenderTaskDef3774F930) 
+EyereadStack | 55/85 | 14:36:46 | CREATE_IN_PROGRESS   | AWS::ECS::TaskDefinition                  | NovaActTaskDef (NovaActTaskDef1EC424AF) 
+EyereadStack | 55/85 | 14:36:46 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | NovaActTaskDef/TaskRole/DefaultPolicy (NovaActTaskDefTaskRoleDefaultPolicyA8471EEB) 
+EyereadStack | 55/85 | 14:36:46 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | RenderTaskDef/TaskRole/DefaultPolicy (RenderTaskDefTaskRoleDefaultPolicy19CCC5C5) 
+EyereadStack | 55/85 | 14:36:47 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | LambdaPipelineRole/DefaultPolicy (LambdaPipelineRoleDefaultPolicy09691B34) 
+EyereadStack | 55/85 | 14:36:47 | CREATE_IN_PROGRESS   | AWS::ECS::TaskDefinition                  | NovaActTaskDef (NovaActTaskDef1EC424AF) Resource creation Initiated
+EyereadStack | 55/85 | 14:36:47 | CREATE_IN_PROGRESS   | AWS::ECS::TaskDefinition                  | RenderTaskDef (RenderTaskDef3774F930) Resource creation Initiated
+EyereadStack | 55/85 | 14:36:47 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | NovaActTaskDef/TaskRole/DefaultPolicy (NovaActTaskDefTaskRoleDefaultPolicyA8471EEB) Resource creation Initiated
+EyereadStack | 55/85 | 14:36:48 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | RenderTaskDef/TaskRole/DefaultPolicy (RenderTaskDefTaskRoleDefaultPolicy19CCC5C5) Resource creation Initiated
+EyereadStack | 55/85 | 14:36:48 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | LambdaPipelineRole/DefaultPolicy (LambdaPipelineRoleDefaultPolicy09691B34) Resource creation Initiated
+EyereadStack | 56/85 | 14:36:48 | CREATE_COMPLETE      | AWS::ECS::TaskDefinition                  | RenderTaskDef (RenderTaskDef3774F930) 
+EyereadStack | 57/85 | 14:36:48 | CREATE_COMPLETE      | AWS::ECS::TaskDefinition                  | NovaActTaskDef (NovaActTaskDef1EC424AF) 
+EyereadStack | 58/85 | 14:36:50 | CREATE_COMPLETE      | AWS::IAM::Policy                          | WebService/TaskDef/ExecutionRole/DefaultPolicy (WebServiceTaskDefExecutionRoleDefaultPolicyF65F7670) 
+EyereadStack | 59/85 | 14:37:03 | CREATE_COMPLETE      | AWS::IAM::Policy                          | NovaActTaskDef/TaskRole/DefaultPolicy (NovaActTaskDefTaskRoleDefaultPolicyA8471EEB) 
+EyereadStack | 60/85 | 14:37:03 | CREATE_COMPLETE      | AWS::IAM::Policy                          | RenderTaskDef/TaskRole/DefaultPolicy (RenderTaskDefTaskRoleDefaultPolicy19CCC5C5) 
+EyereadStack | 61/85 | 14:37:04 | CREATE_COMPLETE      | AWS::IAM::Policy                          | LambdaPipelineRole/DefaultPolicy (LambdaPipelineRoleDefaultPolicy09691B34) 
+EyereadStack | 61/85 | 14:37:04 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | PackageFn (PackageFnDEA2F3D7) 
+EyereadStack | 61/85 | 14:37:04 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | ValidateFn (ValidateFn1051E81A) 
+EyereadStack | 61/85 | 14:37:05 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | GenerateFn (GenerateFn90A5B9E5) 
+EyereadStack | 61/85 | 14:37:05 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | ContextFn (ContextFn3A27E2C0) 
+EyereadStack | 61/85 | 14:37:05 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | IngestFn (IngestFnEE15D018) 
+EyereadStack | 61/85 | 14:37:05 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | TtsFn (TtsFn3E0F963B) 
+EyereadStack | 61/85 | 14:37:06 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | PackageFn (PackageFnDEA2F3D7) Resource creation Initiated
+EyereadStack | 61/85 | 14:37:06 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | ValidateFn (ValidateFn1051E81A) Resource creation Initiated
+EyereadStack | 61/85 | 14:37:06 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | IngestFn (IngestFnEE15D018) Resource creation Initiated
+EyereadStack | 61/85 | 14:37:06 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | GenerateFn (GenerateFn90A5B9E5) Resource creation Initiated
+EyereadStack | 61/85 | 14:37:06 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | ContextFn (ContextFn3A27E2C0) Resource creation Initiated
+EyereadStack | 61/85 | 14:37:06 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | TtsFn (TtsFn3E0F963B) Resource creation Initiated
+EyereadStack | 61/85 | 14:37:15 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | IngestFn (IngestFnEE15D018) Eventual consistency check initiated
+EyereadStack | 61/85 | 14:37:15 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | PackageFn (PackageFnDEA2F3D7) Eventual consistency check initiated
+EyereadStack | 61/85 | 14:37:15 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | ValidateFn (ValidateFn1051E81A) Eventual consistency check initiated
+EyereadStack | 62/85 | 14:37:15 | CREATE_COMPLETE      | AWS::Lambda::Function                     | IngestFn (IngestFnEE15D018) 
+EyereadStack | 62/85 | 14:37:15 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | TtsFn (TtsFn3E0F963B) Eventual consistency check initiated
+EyereadStack | 62/85 | 14:37:15 | CREATE_IN_PROGRESS   | AWS::Lambda::Function                     | GenerateFn (GenerateFn90A5B9E5) Eventual consistency check initiated
+EyereadStack | 63/85 | 14:37:15 | CREATE_COMPLETE      | AWS::Lambda::Function                     | PackageFn (PackageFnDEA2F3D7) 
+EyereadStack | 64/85 | 14:37:15 | CREATE_COMPLETE      | AWS::Lambda::Function                     | ValidateFn (ValidateFn1051E81A) 
+EyereadStack | 65/85 | 14:37:15 | CREATE_COMPLETE      | AWS::Lambda::Function                     | TtsFn (TtsFn3E0F963B) 
+EyereadStack | 66/85 | 14:37:16 | CREATE_COMPLETE      | AWS::Lambda::Function                     | GenerateFn (GenerateFn90A5B9E5) 
+EyereadStack | 67/85 | 14:37:16 | CREATE_COMPLETE      | AWS::Lambda::Function                     | ContextFn (ContextFn3A27E2C0) 
+EyereadStack | 67/85 | 14:37:17 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | EyereadPipeline/Role/DefaultPolicy (EyereadPipelineRoleDefaultPolicy11735FF6) 
+EyereadStack | 67/85 | 14:37:18 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | EyereadPipeline/Role/DefaultPolicy (EyereadPipelineRoleDefaultPolicy11735FF6) Resource creation Initiated
+EyereadStack | 68/85 | 14:37:34 | CREATE_COMPLETE      | AWS::IAM::Policy                          | EyereadPipeline/Role/DefaultPolicy (EyereadPipelineRoleDefaultPolicy11735FF6) 
+EyereadStack | 68/85 | 14:37:36 | CREATE_IN_PROGRESS   | AWS::StepFunctions::StateMachine          | EyereadPipeline (EyereadPipeline6369F73A) 
+EyereadStack | 68/85 | 14:37:38 | CREATE_IN_PROGRESS   | AWS::StepFunctions::StateMachine          | EyereadPipeline (EyereadPipeline6369F73A) Resource creation Initiated
+EyereadStack | 69/85 | 14:37:38 | CREATE_COMPLETE      | AWS::StepFunctions::StateMachine          | EyereadPipeline (EyereadPipeline6369F73A) 
+EyereadStack | 69/85 | 14:37:39 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | ApiService/TaskDef/TaskRole/DefaultPolicy (ApiServiceTaskDefTaskRoleDefaultPolicy63C68204) 
+EyereadStack | 69/85 | 14:37:40 | CREATE_IN_PROGRESS   | AWS::ECS::TaskDefinition                  | ApiService/TaskDef (ApiServiceTaskDefDF3191FB) 
+EyereadStack | 69/85 | 14:37:40 | CREATE_IN_PROGRESS   | AWS::IAM::Policy                          | ApiService/TaskDef/TaskRole/DefaultPolicy (ApiServiceTaskDefTaskRoleDefaultPolicy63C68204) Resource creation Initiated
+EyereadStack | 69/85 | 14:37:41 | CREATE_IN_PROGRESS   | AWS::ECS::TaskDefinition                  | ApiService/TaskDef (ApiServiceTaskDefDF3191FB) Resource creation Initiated
+EyereadStack | 70/85 | 14:37:42 | CREATE_COMPLETE      | AWS::ECS::TaskDefinition                  | ApiService/TaskDef (ApiServiceTaskDefDF3191FB) 
+EyereadStack | 71/85 | 14:37:56 | CREATE_COMPLETE      | AWS::IAM::Policy                          | ApiService/TaskDef/TaskRole/DefaultPolicy (ApiServiceTaskDefTaskRoleDefaultPolicy63C68204) 
+EyereadStack | 71/85 | 14:37:56 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | ApiService/Service/SecurityGroup (ApiServiceSecurityGroup2592096B) 
+EyereadStack | 71/85 | 14:37:59 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroup                   | ApiService/Service/SecurityGroup (ApiServiceSecurityGroup2592096B) Resource creation Initiated
+EyereadStack | 72/85 | 14:38:06 | CREATE_COMPLETE      | AWS::EC2::SecurityGroup                   | ApiService/Service/SecurityGroup (ApiServiceSecurityGroup2592096B) 
+EyereadStack | 72/85 | 14:38:07 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroupIngress            | ApiService/Service/SecurityGroup/from EyereadStackApiServiceLBSecurityGroup56662CF2:8000 (ApiServiceSecurityGroupfromEyereadStackApiServiceLBSecurityGroup56662CF2800016914DDD) 
+EyereadStack | 72/85 | 14:38:07 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroupEgress             | ApiService/LB/SecurityGroup/to EyereadStackApiServiceSecurityGroupF7C550A5:8000 (ApiServiceLBSecurityGrouptoEyereadStackApiServiceSecurityGroupF7C550A58000A1BF5857) 
+EyereadStack | 72/85 | 14:38:08 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroupIngress            | ApiService/Service/SecurityGroup/from EyereadStackApiServiceLBSecurityGroup56662CF2:8000 (ApiServiceSecurityGroupfromEyereadStackApiServiceLBSecurityGroup56662CF2800016914DDD) Resource creation Initiated
+EyereadStack | 72/85 | 14:38:08 | CREATE_IN_PROGRESS   | AWS::EC2::SecurityGroupEgress             | ApiService/LB/SecurityGroup/to EyereadStackApiServiceSecurityGroupF7C550A5:8000 (ApiServiceLBSecurityGrouptoEyereadStackApiServiceSecurityGroupF7C550A58000A1BF5857) Resource creation Initiated
+EyereadStack | 73/85 | 14:38:09 | CREATE_COMPLETE      | AWS::EC2::SecurityGroupIngress            | ApiService/Service/SecurityGroup/from EyereadStackApiServiceLBSecurityGroup56662CF2:8000 (ApiServiceSecurityGroupfromEyereadStackApiServiceLBSecurityGroup56662CF2800016914DDD) 
+EyereadStack | 74/85 | 14:38:09 | CREATE_COMPLETE      | AWS::EC2::SecurityGroupEgress             | ApiService/LB/SecurityGroup/to EyereadStackApiServiceSecurityGroupF7C550A5:8000 (ApiServiceLBSecurityGrouptoEyereadStackApiServiceSecurityGroupF7C550A58000A1BF5857) 
+EyereadStack | 75/85 | 14:38:21 | CREATE_COMPLETE      | AWS::EC2::NatGateway                      | EyereadVpc/PublicSubnet1/NATGateway (EyereadVpcPublicSubnet1NATGatewayC0F5CE73) 
+EyereadStack | 75/85 | 14:38:22 | CREATE_IN_PROGRESS   | AWS::EC2::Route                           | EyereadVpc/PrivateSubnet2/DefaultRoute (EyereadVpcPrivateSubnet2DefaultRouteBF2924A6) 
+EyereadStack | 75/85 | 14:38:22 | CREATE_IN_PROGRESS   | AWS::EC2::Route                           | EyereadVpc/PrivateSubnet1/DefaultRoute (EyereadVpcPrivateSubnet1DefaultRoute74309B52) 
+EyereadStack | 75/85 | 14:38:23 | CREATE_IN_PROGRESS   | AWS::EC2::Route                           | EyereadVpc/PrivateSubnet2/DefaultRoute (EyereadVpcPrivateSubnet2DefaultRouteBF2924A6) Resource creation Initiated
+EyereadStack | 75/85 | 14:38:23 | CREATE_IN_PROGRESS   | AWS::EC2::Route                           | EyereadVpc/PrivateSubnet1/DefaultRoute (EyereadVpcPrivateSubnet1DefaultRoute74309B52) Resource creation Initiated
+EyereadStack | 76/85 | 14:38:24 | CREATE_COMPLETE      | AWS::EC2::Route                           | EyereadVpc/PrivateSubnet2/DefaultRoute (EyereadVpcPrivateSubnet2DefaultRouteBF2924A6) 
+EyereadStack | 77/85 | 14:38:24 | CREATE_COMPLETE      | AWS::EC2::Route                           | EyereadVpc/PrivateSubnet1/DefaultRoute (EyereadVpcPrivateSubnet1DefaultRoute74309B52) 
+EyereadStack | 78/85 | 14:38:45 | CREATE_COMPLETE      | AWS::ElasticLoadBalancingV2::LoadBalancer | WebService/LB (WebServiceLB9CAD0C10) 
+EyereadStack | 79/85 | 14:38:45 | CREATE_COMPLETE      | AWS::ElasticLoadBalancingV2::LoadBalancer | ApiService/LB (ApiServiceLB08B891CD) 
+EyereadStack | 79/85 | 14:38:46 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::Listener     | WebService/LB/PublicListener (WebServiceLBPublicListenerEA62BC7F) 
+EyereadStack | 79/85 | 14:38:46 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::Listener     | ApiService/LB/PublicListener (ApiServiceLBPublicListener1394DF3E) 
+EyereadStack | 79/85 | 14:38:47 | CREATE_IN_PROGRESS   | AWS::ECS::TaskDefinition                  | WebService/TaskDef (WebServiceTaskDef0DAE0F9A) 
+EyereadStack | 79/85 | 14:38:47 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::Listener     | WebService/LB/PublicListener (WebServiceLBPublicListenerEA62BC7F) Resource creation Initiated
+EyereadStack | 79/85 | 14:38:47 | CREATE_IN_PROGRESS   | AWS::ElasticLoadBalancingV2::Listener     | ApiService/LB/PublicListener (ApiServiceLBPublicListener1394DF3E) Resource creation Initiated
+EyereadStack | 80/85 | 14:38:48 | CREATE_COMPLETE      | AWS::ElasticLoadBalancingV2::Listener     | WebService/LB/PublicListener (WebServiceLBPublicListenerEA62BC7F) 
+EyereadStack | 81/85 | 14:38:48 | CREATE_COMPLETE      | AWS::ElasticLoadBalancingV2::Listener     | ApiService/LB/PublicListener (ApiServiceLBPublicListener1394DF3E) 
+EyereadStack | 81/85 | 14:38:48 | CREATE_IN_PROGRESS   | AWS::ECS::TaskDefinition                  | WebService/TaskDef (WebServiceTaskDef0DAE0F9A) Resource creation Initiated
+EyereadStack | 81/85 | 14:38:48 | CREATE_IN_PROGRESS   | AWS::ECS::Service                         | ApiService/Service/Service (ApiService199661B5) 
+EyereadStack | 82/85 | 14:38:49 | CREATE_COMPLETE      | AWS::ECS::TaskDefinition                  | WebService/TaskDef (WebServiceTaskDef0DAE0F9A) 
+EyereadStack | 82/85 | 14:38:50 | CREATE_IN_PROGRESS   | AWS::ECS::Service                         | WebService/Service/Service (WebService5EA589E6) 
+EyereadStack | 82/85 | 14:38:51 | CREATE_IN_PROGRESS   | AWS::ECS::Service                         | ApiService/Service/Service (ApiService199661B5) Resource creation Initiated
+EyereadStack | 82/85 | 14:38:52 | CREATE_IN_PROGRESS   | AWS::ECS::Service                         | WebService/Service/Service (WebService5EA589E6) Resource creation Initiated
+Error occurred while monitoring stack: Error: getaddrinfo ENOTFOUND sts.us-east-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:121:26) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'sts.us-east-1.amazonaws.com',
+  '$metadata': [Object]
+}
+
+NOTICES         (What's this? https://github.com/aws/aws-cdk/wiki/CLI-Notices)
+
+34892	CDK CLI collects telemetry data on command usage starting at version 2.1100.0 (unless opted out)
+
+	Overview: We do not collect customer content and we anonymize the
+	          telemetry we do collect. See the attached issue for more
+	          information on what data is collected, why, and how to
+	          opt-out. Telemetry will NOT be collected for any CDK CLI
+	          version prior to version 2.1100.0 - regardless of
+	          opt-in/out. You can also view the telemetry we collect by
+	          logging it to a local file, by adding
+	          `--telemetry-file=my/local/file` to any `cdk` command.
+
+	Affected versions: cli: >=2.1100.0 <2.1106.1
+
+	More information at: https://github.com/aws/aws-cdk/issues/34892
+
+
+If you donΓÇÖt want to see a notice anymore, use "cdk acknowledge <id>". For example, "cdk acknowledge 34892".
+Γ¥î  EyereadStack failed: Error: getaddrinfo ENOTFOUND sts.us-east-1.amazonaws.com

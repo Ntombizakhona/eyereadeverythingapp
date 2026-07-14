@@ -1,0 +1,24 @@
+Write a complete narration script for a video based on the plan below.
+
+## Video Plan
+{plan_json}
+
+## Channel Context
+{context_exemplars}
+
+## Requirements
+- Tone: {tone}
+- Target audience: {audience}
+- Include timestamp markers every ~15 seconds: [00:00], [00:15], [00:30], etc.
+- Include delivery cues in brackets: [pause], [emphasis], [slower], [faster]
+- Write exactly what the narrator should say — no stage directions or descriptions
+- Match the scene beats from the plan exactly
+
+## Output Format
+Write the script as plain text with timestamp markers. Example:
+
+[00:00] Did you know that 90% of startups fail? [pause] But here's the thing — most of them fail for the exact same reasons.
+
+[00:15] Today we're diving into the three mistakes that kill most businesses before they even get started. [emphasis] And I'll show you how to avoid every single one.
+
+Write the complete script now. Return ONLY the script text.

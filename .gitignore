@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Build
+.next/
+out/
+dist/
+build/
+*.egg-info/
+
+# CDK
+cdk.out/
+cdk.context.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Kiro
+.kiro/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output artifacts
+outputs/
+*.mp4
+*.mp3
+*.zip
+
+# AWS
+.aws-sam/
+
+# Lambda packages
+services/*/package/
+services/*/lambda.zip

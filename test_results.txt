@@ -1,0 +1,159 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.0, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\Ntomb\AppData\Local\Programs\Python\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Ntomb\Downloads\eyereadeverything
+configfile: pytest.ini
+plugins: anyio-4.12.1, asyncio-1.3.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 75 items
+
+tests/test_api.py::TestHealthEndpoint::test_health_returns_200 PASSED    [  1%]
+tests/test_api.py::TestJobsEndpoints::test_create_blog_job PASSED        [  2%]
+tests/test_api.py::TestJobsEndpoints::test_create_talk_job PASSED        [  4%]
+tests/test_api.py::TestJobsEndpoints::test_get_job_by_id PASSED          [  5%]
+tests/test_api.py::TestJobsEndpoints::test_get_nonexistent_job_returns_404 PASSED [  6%]
+tests/test_api.py::TestJobsEndpoints::test_list_jobs_empty PASSED        [  8%]
+tests/test_api.py::TestJobsEndpoints::test_list_jobs_after_creation PASSED [  9%]
+tests/test_api.py::TestUploadsEndpoints::test_presign_returns_url_and_key PASSED [ 10%]
+tests/test_api.py::TestVoiceProfileEndpoints::test_create_voice_profile PASSED [ 12%]
+tests/test_api.py::TestVoiceProfileEndpoints::test_list_voice_profiles_empty PASSED [ 13%]
+tests/test_api.py::TestVoiceProfileEndpoints::test_delete_voice_profile PASSED [ 14%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_exists[system] PASSED [ 16%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_exists[plan] PASSED [ 17%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_exists[script] PASSED [ 18%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_exists[metadata] PASSED [ 20%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_exists[captions] PASSED [ 21%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_exists[render_plan] PASSED [ 22%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_not_empty[system] PASSED [ 24%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_not_empty[plan] PASSED [ 25%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_not_empty[script] PASSED [ 26%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_not_empty[metadata] PASSED [ 28%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_not_empty[captions] PASSED [ 29%]
+tests/test_generate.py::TestPromptTemplates::test_prompt_file_not_empty[render_plan] PASSED [ 30%]
+tests/test_generate.py::TestPromptTemplates::test_plan_prompt_has_placeholders PASSED [ 32%]
+tests/test_generate.py::TestPromptTemplates::test_script_prompt_has_placeholders PASSED [ 33%]
+tests/test_generate.py::TestPromptTemplates::test_metadata_prompt_has_placeholders PASSED [ 34%]
+tests/test_generate.py::TestPromptTemplates::test_captions_prompt_has_placeholders PASSED [ 36%]
+tests/test_generate.py::TestJsonParsing::test_parse_clean_json PASSED    [ 37%]
+tests/test_generate.py::TestJsonParsing::test_parse_json_with_markdown_fences PASSED [ 38%]
+tests/test_generate.py::TestJsonParsing::test_parse_json_with_plain_fences PASSED [ 40%]
+tests/test_generate.py::TestJsonParsing::test_parse_invalid_json_raises PASSED [ 41%]
+tests/test_generate.py::TestS3Output::test_save_to_s3 PASSED             [ 42%]
+tests/test_generate.py::TestS3Output::test_save_multiple_artifacts PASSED [ 44%]
+tests/test_ingest.py::TestBlogExtraction::test_extract_blog_returns_text PASSED [ 45%]
+tests/test_ingest.py::TestBlogExtraction::test_extract_blog_invalid_url PASSED [ 46%]
+tests/test_ingest.py::TestIngestHandler::test_blog_ingest_saves_to_s3 PASSED [ 48%]
+tests/test_ingest.py::TestIngestHandler::test_talk_mode_requires_audio PASSED [ 49%]
+tests/test_ingest.py::TestIngestHandler::test_status_updated_to_ingesting PASSED [ 50%]
+tests/test_models.py::TestStyleSettings::test_defaults PASSED            [ 52%]
+tests/test_models.py::TestStyleSettings::test_custom_values PASSED       [ 53%]
+tests/test_models.py::TestStyleSettings::test_invalid_duration_rejected PASSED [ 54%]
+tests/test_models.py::TestStyleSettings::test_invalid_tone_rejected PASSED [ 56%]
+tests/test_models.py::TestJobCreate::test_blog_mode PASSED               [ 57%]
+tests/test_models.py::TestJobCreate::test_talk_mode PASSED               [ 58%]
+tests/test_models.py::TestJobCreate::test_default_style PASSED           [ 60%]
+tests/test_models.py::TestJobCreate::test_invalid_mode_rejected PASSED   [ 61%]
+tests/test_models.py::TestJob::test_full_job PASSED                      [ 62%]
+tests/test_models.py::TestJob::test_job_serialization PASSED             [ 64%]
+tests/test_models.py::TestJob::test_job_with_outputs PASSED              [ 65%]
+tests/test_models.py::TestPresignModels::test_presign_request PASSED     [ 66%]
+tests/test_models.py::TestPresignModels::test_presign_response PASSED    [ 68%]
+tests/test_models.py::TestVoiceProfile::test_create PASSED               [ 69%]
+tests/test_models.py::TestVoiceProfile::test_full_profile PASSED         [ 70%]
+tests/test_package.py::TestPackageHandler::test_creates_zip_package PASSED [ 72%]
+tests/test_package.py::TestPackageHandler::test_zip_contains_expected_files PASSED [ 73%]
+tests/test_package.py::TestPackageHandler::test_outputs_have_presigned_urls PASSED [ 74%]
+tests/test_package.py::TestPackageHandler::test_status_set_to_done PASSED [ 76%]
+tests/test_package.py::TestPackageHandler::test_status_set_to_uploading_when_auto PASSED [ 77%]
+tests/test_package.py::TestPackageHandler::test_handles_missing_artifacts_gracefully PASSED [ 78%]
+tests/test_tts.py::TestScriptCleaning::test_removes_timestamps PASSED    [ 80%]
+tests/test_tts.py::TestScriptCleaning::test_removes_delivery_cues PASSED [ 81%]
+tests/test_tts.py::TestScriptCleaning::test_collapses_whitespace PASSED  [ 82%]
+tests/test_tts.py::TestScriptCleaning::test_preserves_narration_text PASSED [ 84%]
+tests/test_tts.py::TestSSMLGeneration::test_wraps_in_speak_tags PASSED   [ 85%]
+tests/test_tts.py::TestSSMLGeneration::test_includes_prosody PASSED      [ 86%]
+tests/test_tts.py::TestSSMLGeneration::test_adds_paragraph_breaks PASSED [ 88%]
+tests/test_tts.py::TestSSMLGeneration::test_adds_break_between_paragraphs PASSED [ 89%]
+tests/test_tts.py::TestSSMLGeneration::test_default_rate_is_medium PASSED [ 90%]
+tests/test_validate.py::TestValidateHandler::test_blog_mode_valid PASSED [ 92%]
+tests/test_validate.py::TestValidateHandler::test_blog_mode_missing_url PASSED [ 93%]
+tests/test_validate.py::TestValidateHandler::test_talk_mode_valid PASSED [ 94%]
+tests/test_validate.py::TestValidateHandler::test_talk_mode_missing_audio PASSED [ 96%]
+tests/test_validate.py::TestValidateHandler::test_duration_mapping_short PASSED [ 97%]
+tests/test_validate.py::TestValidateHandler::test_duration_mapping_long PASSED [ 98%]
+tests/test_validate.py::TestValidateHandler::test_status_updated_to_validating PASSED [100%]
+
+============================== warnings summary ===============================
+tests/test_api.py::TestHealthEndpoint::test_health_returns_200
+  C:\Users\Ntomb\Downloads\eyereadeverything\tests\..\apps\api\config.py:5: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
+    class Settings(BaseSettings):
+
+tests/test_api.py::TestJobsEndpoints::test_create_blog_job
+tests/test_api.py::TestJobsEndpoints::test_create_talk_job
+tests/test_api.py::TestJobsEndpoints::test_get_job_by_id
+tests/test_api.py::TestJobsEndpoints::test_list_jobs_after_creation
+tests/test_api.py::TestJobsEndpoints::test_list_jobs_after_creation
+  C:\Users\Ntomb\Downloads\eyereadeverything\tests\..\apps\api\routes\jobs.py:43: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = datetime.utcnow().isoformat()
+
+tests/test_api.py::TestVoiceProfileEndpoints::test_create_voice_profile
+tests/test_api.py::TestVoiceProfileEndpoints::test_delete_voice_profile
+  C:\Users\Ntomb\Downloads\eyereadeverything\tests\..\apps\api\routes\voice_profiles.py:24: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    consent_timestamp=datetime.utcnow().isoformat(),
+
+tests/test_api.py::TestVoiceProfileEndpoints::test_delete_voice_profile
+  C:\Users\Ntomb\Downloads\eyereadeverything\tests\..\apps\api\routes\voice_profiles.py:54: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    now = datetime.utcnow().isoformat()
+
+tests/test_ingest.py::TestIngestHandler::test_blog_ingest_saves_to_s3
+tests/test_ingest.py::TestIngestHandler::test_talk_mode_requires_audio
+tests/test_ingest.py::TestIngestHandler::test_status_updated_to_ingesting
+  C:\Users\Ntomb\Downloads\eyereadeverything\tests\..\services\ingest\handler.py:25: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    ExpressionAttributeValues={":s": status, ":u": datetime.utcnow().isoformat()},
+
+tests/test_models.py::TestJob::test_full_job
+tests/test_models.py::TestJob::test_job_serialization
+tests/test_models.py::TestJob::test_job_with_outputs
+  C:\Users\Ntomb\Downloads\eyereadeverything\tests\..\apps\api\models.py:58: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
+
+tests/test_models.py::TestJob::test_full_job
+tests/test_models.py::TestJob::test_job_serialization
+tests/test_models.py::TestJob::test_job_with_outputs
+  C:\Users\Ntomb\Downloads\eyereadeverything\tests\..\apps\api\models.py:59: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    updated_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
+
+tests/test_package.py::TestPackageHandler::test_creates_zip_package
+tests/test_package.py::TestPackageHandler::test_zip_contains_expected_files
+tests/test_package.py::TestPackageHandler::test_outputs_have_presigned_urls
+tests/test_package.py::TestPackageHandler::test_status_set_to_done
+tests/test_package.py::TestPackageHandler::test_status_set_to_uploading_when_auto
+tests/test_package.py::TestPackageHandler::test_handles_missing_artifacts_gracefully
+  C:\Users\Ntomb\Downloads\eyereadeverything\tests\..\services\package\handler.py:23: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    ExpressionAttributeValues={":s": status, ":u": datetime.utcnow().isoformat()},
+
+tests/test_package.py::TestPackageHandler::test_creates_zip_package
+tests/test_package.py::TestPackageHandler::test_zip_contains_expected_files
+tests/test_package.py::TestPackageHandler::test_outputs_have_presigned_urls
+tests/test_package.py::TestPackageHandler::test_status_set_to_done
+tests/test_package.py::TestPackageHandler::test_status_set_to_uploading_when_auto
+tests/test_package.py::TestPackageHandler::test_handles_missing_artifacts_gracefully
+  C:\Users\Ntomb\Downloads\eyereadeverything\tests\..\services\package\handler.py:99: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    ":u": datetime.utcnow().isoformat(),
+
+tests/test_validate.py::TestValidateHandler::test_blog_mode_valid
+tests/test_validate.py::TestValidateHandler::test_blog_mode_missing_url
+tests/test_validate.py::TestValidateHandler::test_blog_mode_missing_url
+tests/test_validate.py::TestValidateHandler::test_talk_mode_valid
+tests/test_validate.py::TestValidateHandler::test_talk_mode_missing_audio
+tests/test_validate.py::TestValidateHandler::test_talk_mode_missing_audio
+tests/test_validate.py::TestValidateHandler::test_duration_mapping_short
+tests/test_validate.py::TestValidateHandler::test_duration_mapping_long
+tests/test_validate.py::TestValidateHandler::test_status_updated_to_validating
+  C:\Users\Ntomb\Downloads\eyereadeverything\tests\..\services\validate\handler.py:16: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    expr_values = {":s": status, ":u": datetime.utcnow().isoformat()}
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+====================== 75 passed, 39 warnings in 22.62s =======================
+
+---STDERR---

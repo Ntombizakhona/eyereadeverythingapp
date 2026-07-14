@@ -1,0 +1,54 @@
+Create a detailed visual render plan for each scene of the following video.
+
+## Video Plan
+{plan_json}
+
+## Script
+{script}
+
+## Requirements
+- Aspect ratio: 16:9 (1920x1080)
+- For each scene, specify:
+  - Background style (gradient colors, solid, or image keyword)
+  - On-screen text overlays (key phrases, stats, bullet points)
+  - Text animation style
+  - B-roll image search keywords (for future asset sourcing)
+- Keep text minimal and large (YouTube mobile viewing)
+- Use dark, professional backgrounds by default
+
+## Output Format (strict JSON)
+```json
+{{
+  "aspect": "16:9",
+  "resolution": "1920x1080",
+  "fps": 30,
+  "total_duration_sec": {target_duration_sec},
+  "scenes": [
+    {{
+      "scene_number": 1,
+      "start_sec": 0,
+      "end_sec": 10,
+      "type": "hook",
+      "background": {{
+        "type": "gradient",
+        "colors": ["#0a0a0a", "#1a1a2e"],
+        "direction": "diagonal"
+      }},
+      "text_overlays": [
+        {{
+          "text": "90% of startups FAIL",
+          "position": "center",
+          "font_size": 72,
+          "color": "#ffffff",
+          "animation": "fade_in",
+          "start_sec": 1,
+          "end_sec": 8
+        }}
+      ],
+      "broll_keywords": ["startup office", "failure chart"]
+    }}
+  ]
+}}
+```
+
+Return ONLY the JSON, no markdown fences, no explanation.

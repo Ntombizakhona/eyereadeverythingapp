@@ -1,0 +1,35 @@
+Create a detailed video plan based on the source content below.
+
+## Source Content
+{source_text}
+
+## Channel Context (previous style exemplars)
+{context_exemplars}
+
+## Requirements
+- Target duration: {target_duration_sec} seconds
+- Tone: {tone}
+- Target audience: {audience}
+
+## Output Format (strict JSON)
+```json
+{{
+  "title_working": "Working title for the video",
+  "premise": "One-sentence premise of the video",
+  "target_duration_sec": {target_duration_sec},
+  "scenes": [
+    {{
+      "scene_number": 1,
+      "type": "hook|context|main|cta",
+      "start_sec": 0,
+      "end_sec": 10,
+      "beat": "What happens in this scene",
+      "key_points": ["point 1", "point 2"],
+      "visual_suggestion": "What should be on screen"
+    }}
+  ],
+  "total_scenes": 8
+}}
+```
+
+Return ONLY the JSON, no markdown fences, no explanation.

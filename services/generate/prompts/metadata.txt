@@ -1,0 +1,37 @@
+Generate YouTube metadata for the following video script.
+
+## Script
+{script}
+
+## Video Plan
+{plan_json}
+
+## Requirements
+- Create 5 title options (SEO-optimized, under 60 characters each)
+- Write a compelling description (2000+ characters with keywords)
+- Generate 15-20 relevant tags
+- Create chapter timestamps from the script's timestamp markers
+- Target audience: {audience}
+
+## Output Format (strict JSON)
+```json
+{{
+  "titles": [
+    "Title option 1",
+    "Title option 2",
+    "Title option 3",
+    "Title option 4",
+    "Title option 5"
+  ],
+  "selected_title": "Best title option",
+  "description": "Full YouTube description with line breaks...",
+  "tags": ["tag1", "tag2", "tag3"],
+  "chapters": [
+    {{"time": "0:00", "title": "Introduction"}},
+    {{"time": "0:30", "title": "The Problem"}}
+  ],
+  "category": "Education"
+}}
+```
+
+Return ONLY the JSON, no markdown fences, no explanation.
