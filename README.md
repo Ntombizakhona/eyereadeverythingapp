@@ -1,6 +1,8 @@
 # eyereadeverything
 
-**Turn any blog post, text, or voice idea into a YouTube-ready video package — powered by Amazon Nova AI.**
+**Turn any blog post, text, or voice idea into a YouTube-ready video package**
+
+*powered by Amazon Nova AI.*
 
 eyereadeverything is a production-grade, AWS-native microservices application that takes a blog URL, raw text, or audio recording and generates a complete YouTube package: script, narration, video, AI-generated thumbnail, captions, and metadata.
 
@@ -35,11 +37,11 @@ All three modes feed into the same AI pipeline: plan → script → metadata →
 ┌──────────────────────────────────────────────────────────────────────┐
 │  AWS Step Functions Pipeline                                         │
 │                                                                      │
-│  Validate → Ingest → Context → Generate → TTS → Render → Package    │
+│  Validate → Ingest → Context → Generate → TTS → Render → Package     │
 │                                    │                                 │
 │                          ┌─────────┴──────────┐                      │
-│                          │  Nova Pro (5 stages)│                      │
-│                          │  + Nova Canvas thumb│                      │
+│                          │  Nova Pro (5 stages)│                     │
+│                          │  + Nova Canvas thumb│                     │
 │                          └────────────────────┘                      │
 │                                                    ↓                 │
 │                                            [Optional] Nova Act       │
@@ -143,7 +145,7 @@ eyereadeverything/
 ## Pipeline Stages
 
 1. **Validate:** Check inputs, map duration settings
-2. **Ingest** Extract blog content (Nova Pro), transcribe audio, or pass through text
+2. **Ingest:** Extract blog content (Nova Pro), transcribe audio, or pass through text
 3. **Context:** Retrieve channel style exemplars via embeddings (OpenSearch)
 4. **Generate:** 6-stage Nova Pro pipeline:
    - Video Plan → Script → Metadata → Captions → Render Plan → AI Thumbnail (Nova Canvas)
